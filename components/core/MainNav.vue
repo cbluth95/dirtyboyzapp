@@ -102,8 +102,23 @@ export default {
         },
         {
           icon: '',
-          title: 'Inspire',
-          path: '/inspire'
+          title: 'services',
+          path: '/services'
+        },
+        {
+          icon: '',
+          title: 'gallery',
+          path: '/gallery'
+        },
+        {
+          icon: '',
+          title: 'about',
+          path: '/about'
+        },
+        {
+          icon: '',
+          title: 'contact',
+          path: '/contact'
         }
       ]
       return items
