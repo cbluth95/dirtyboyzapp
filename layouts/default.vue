@@ -1,5 +1,5 @@
 <template>
-  <v-app dark style="background-color: #111;">
+  <v-app dark style="background-color: black;">
     <core-main-nav/>
     <v-content>
       <v-container fluid>

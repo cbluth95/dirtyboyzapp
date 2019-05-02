@@ -3,17 +3,21 @@
     <main>
       <section>
         <v-parallax :src="background" height="500">
-          <v-layout row wrap align-center justify-center>
-            <v-flex xs12 text-xs-center>
-              <h1 style="font-size: 4em">We want your trash!</h1>
-              <v-btn>Our Services</v-btn>
-              <v-btn>Get a free estimate</v-btn>
-            </v-flex>
-          </v-layout>
+          <div class="fill-height overlay-gradient">
+            <v-container bg fill-height grid-list-md text-xs-center>
+              <v-layout row wrap align-center justify-center>
+                <v-flex xs12 text-xs-center>
+                  <h1 style="font-size: 4em">We want your trash!</h1>
+                  <v-btn outline>Our Services</v-btn>
+                  <v-btn outline>Get a free estimate</v-btn>
+                </v-flex>
+              </v-layout>
+            </v-container>
+          </div>
         </v-parallax>
 
         <div id="content">
-          <v-layout row wrap class="my-5" background-color="#111">
+          <v-layout row wrap class="my-5">
             <v-flex xs12 sm4 pa-4>
               <v-card light height="300" class="elevation-0">
                 <v-card-media height="45px" class="text-xs-center">
@@ -67,11 +71,13 @@
 
       <section>
         <v-parallax :src="background" height="500">
-          <v-layout column align-center justify-center>
-            <div
-              class="headline white--text text-xs-center"
-            >Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-          </v-layout>
+          <div class="fill-height overlay-gradient">
+            <v-layout column align-center justify-center>
+              <div
+                class="headline white--text text-xs-center"
+              >Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+            </v-layout>
+          </div>
         </v-parallax>
       </section>
 
@@ -79,7 +85,7 @@
         <div id="content">
           <v-layout row wrap class="my-5">
             <v-flex xs12>
-              <v-card class="elevation-0">
+              <v-card light class="elevation-0">
                 <v-card-title primary-title>
                   <div class="headline text-xs-center" style="width:100%">Contact Us</div>
                 </v-card-title>
@@ -100,11 +106,13 @@
 
       <section>
         <v-parallax :src="background" height="500">
-          <v-layout column align-center justify-center>
-            <div
-              class="headline white--text text-xs-center"
-            >Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-          </v-layout>
+          <div class="fill-height overlay-gradient">
+            <v-layout column align-center justify-center>
+              <div
+                class="headline white--text text-xs-center"
+              >Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+            </v-layout>
+          </div>
         </v-parallax>
       </section>
     </main>
@@ -141,3 +149,14 @@ export default {
   }
 }
 </script>
+
+<style>
+.v-parallax__content {
+  padding: 0;
+}
+.overlay-gradient {
+  background-image: linear-gradient(to bottom, transparent 0%, black 100%),
+    linear-gradient(to top, transparent 0%, black 100%);
+}
+</style>
+
