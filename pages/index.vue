@@ -7,7 +7,7 @@
             <v-container bg fill-height grid-list-md text-xs-center>
               <v-layout row wrap align-center justify-center>
                 <v-flex xs12 text-xs-center>
-                  <h1 style="font-size: 4em">We want your trash!</h1>
+                  <h1 style="font-size: 4em">We Want Your Trash!</h1>
                   <v-btn outline>Our Services</v-btn>
                   <v-btn outline>Get a free estimate</v-btn>
                 </v-flex>
@@ -15,60 +15,9 @@
             </v-container>
           </div>
         </v-parallax>
-
-        <div id="content">
-          <v-layout row wrap class="my-5">
-            <v-flex xs12 sm4 pa-4>
-              <v-card light height="300" class="elevation-0">
-                <v-card-media height="45px" class="text-xs-center">
-                  <v-icon x-large class="brown--text">flash_on</v-icon>
-                </v-card-media>
-                <v-card-title primary-title>
-                  <div class="headline text-xs-center" style="width:100%">Recycling</div>
-                </v-card-title>
-                <v-card-text>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat.
-                  Etiam pellentesque tristique arcu, non consequat magna fermentum ac. Cras ut ultricies eros.
-                </v-card-text>
-              </v-card>
-            </v-flex>
-
-            <v-flex xs12 sm4 pa-4>
-              <v-card light height="300" class="elevation-0">
-                <v-card-media height="45px" class="text-xs-center">
-                  <v-icon x-large class="brown--text">group</v-icon>
-                </v-card-media>
-                <v-card-title primary-title>
-                  <div class="headline text-xs-center" style="width:100%">Trash Pickup</div>
-                </v-card-title>
-                <v-card-text>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat.
-                  Etiam pellentesque tristique arcu, non consequat magna fermentum ac. Cras ut ultricies eros.
-                  Maecenas eros justo, ullamcorper a sapien id, viverra ultrices eros. Morbi sem neque, posuere
-                  et pretium eget, bibendum sollicitudin lacus. Aliquam eleifend sollicitudin diam, eu mattis nisl
-                </v-card-text>
-              </v-card>
-            </v-flex>
-
-            <v-flex xs12 sm4 pa-4>
-              <v-card light height="300" class="elevation-0">
-                <v-card-media height="45px" class="text-xs-center">
-                  <v-icon x-large class="brown--text">settings</v-icon>
-                </v-card-media>
-                <v-card-title primary-title>
-                  <div class="headline text-xs-center" style="width:100%">House Clean Outs</div>
-                </v-card-title>
-                <v-card-text>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat.
-                  Etiam pellentesque tristique arcu, non consequat magna fermentum ac. Cras ut ultricies eros.
-                  Maecenas eros justo, ullamcorper a sapien id, viverra ultrices eros. Morbi sem neque, posuere
-                </v-card-text>
-              </v-card>
-            </v-flex>
-          </v-layout>
-        </div>
       </section>
-
+      <shared-service-panel/>
+      <shared-news-updates/>
       <section>
         <v-parallax :src="background" height="500">
           <div class="fill-height overlay-gradient">
@@ -121,11 +70,14 @@
 
 <script>
 import background from '../assets/images/img2.jpg'
+import Glass from '../assets/images/static/trashbins/glass.png'
+
 export default {
   data() {
     return {
       items: null,
-      background: background
+      background: background,
+      glass: Glass
     }
   },
   computed: {

@@ -47,7 +47,7 @@
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
-    <v-toolbar light height="80" app :clipped-left="clipped" class="main-nav">
+    <v-toolbar light height="100" app :clipped-left="clipped" class="main-nav">
       <v-toolbar-side-icon class="hidden-lg-and-up" @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-spacer class="hidden-lg-and-up"></v-spacer>
       <router-link to="/">
