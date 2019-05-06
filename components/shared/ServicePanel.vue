@@ -10,7 +10,7 @@
           v-for="(item, i) in serviceList"
           :key="i"
         >
-          <v-card light height="360px">
+          <v-card light height="400px">
             <v-container fill-height>
               <v-layout row wrap align-center>
                 <v-flex xs12 mt-2 justify-center text-xs-center>

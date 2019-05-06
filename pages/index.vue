@@ -8,8 +8,8 @@
               <v-layout row wrap align-center justify-center>
                 <v-flex xs12 text-xs-center>
                   <h1 style="font-size: 4em">We Want Your Trash!</h1>
-                  <v-btn outline>Our Services</v-btn>
-                  <v-btn outline>Get a free estimate</v-btn>
+                  <v-btn class="header-btn" outline large>Get a free estimate</v-btn>
+                  <v-btn class="header-btn" outline large>Our Services</v-btn>
                 </v-flex>
               </v-layout>
             </v-container>
@@ -18,18 +18,6 @@
       </section>
       <shared-service-panel/>
       <shared-news-updates/>
-      <section>
-        <v-parallax :src="background" height="500">
-          <div class="fill-height overlay-gradient">
-            <v-layout column align-center justify-center>
-              <div
-                class="headline white--text text-xs-center"
-              >Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-            </v-layout>
-          </div>
-        </v-parallax>
-      </section>
-
       <section>
         <div id="content">
           <v-layout row wrap class="my-5">
@@ -109,6 +97,9 @@ export default {
 .overlay-gradient {
   background-image: linear-gradient(to bottom, transparent 0%, black 100%),
     linear-gradient(to top, transparent 0%, black 100%);
+}
+.header-btn {
+  width: 220px;
 }
 </style>
 
