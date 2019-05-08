@@ -18,6 +18,8 @@
       </section>
       <shared-service-panel/>
       <shared-news-updates/>
+      <shared-contact-us/>
+      <shared-service-promo/>
       <section>
         <div id="content">
           <v-layout row wrap class="my-5">
@@ -92,7 +94,7 @@ export default {
 
 <style>
 .v-parallax__content {
-  padding: 0;
+  padding: 0 !important;
 }
 .overlay-gradient {
   background-image: linear-gradient(to bottom, transparent 0%, black 100%),
