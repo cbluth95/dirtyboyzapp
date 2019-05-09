@@ -10,8 +10,7 @@
       </v-btn>
     </v-toolbar>-->
     <v-navigation-drawer
-      class="hidden-lg-and-up drawerBack"
-      dark
+      class="hidden-lg-and-up drawerBack grey lighten-1"
       persistent
       :mini-variant="miniVariant"
       :clipped="clipped"
@@ -23,9 +22,9 @@
       <v-list>
         <v-list-tile value="true" v-for="(item, i) in navItems" :key="i" :to="item.path">
           <v-list-tile-action>
-            <v-icon v-html="item.icon"></v-icon>
+            <v-icon color="red" v-html="item.icon"></v-icon>
           </v-list-tile-action>
-          <v-list-tile-content class="white--text">
+          <v-list-tile-content class="black--text">
             <v-list-tile-title v-if="item.dropdown == null">{{item.title}}</v-list-tile-title>
             <v-menu open-on-hover bottom offset-y v-if="item.dropdown == true" light>
               <v-list-tile-title slot="activator">
@@ -51,7 +50,12 @@
       <v-toolbar-side-icon class="hidden-lg-and-up" @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-spacer class="hidden-lg-and-up"></v-spacer>
       <router-link to="/">
-        <img src="../../assets/logo.png" style="width: 250px;height: 55px" alt>
+        <img
+          src="../../assets/logo.png"
+          class="animated bounceInDown"
+          style="width: 250px;height: 55px"
+          alt
+        >
         <!-- <v-toolbar-title class="white--text text-xs-center mr-4">{{title}}</v-toolbar-title> -->
       </router-link>
       <v-spacer></v-spacer>
@@ -97,27 +101,27 @@ export default {
       const items = [
         {
           icon: 'home',
-          title: 'home',
+          title: 'Home',
           path: '/'
         },
         {
           icon: '',
-          title: 'services',
+          title: 'Services',
           path: '/services'
         },
         {
           icon: '',
-          title: 'gallery',
+          title: 'Gallery',
           path: '/gallery'
         },
         {
           icon: '',
-          title: 'about',
+          title: 'About',
           path: '/about'
         },
         {
           icon: '',
-          title: 'contact',
+          title: 'Contact',
           path: '/contact'
         }
       ]
@@ -130,6 +134,9 @@ export default {
 <style>
 #nav {
   z-index: 10;
+}
+a.v-list__tile.v-list__tile--link.theme--dark.primary--text {
+  border-bottom: 1px solid black;
 }
 </style>
 

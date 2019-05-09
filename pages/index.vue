@@ -18,8 +18,9 @@
       </section>
       <shared-service-panel/>
       <shared-news-updates/>
-      <shared-contact-us/>
       <shared-service-promo/>
+      <shared-contact-us/>
+
       <section>
         <div id="content">
           <v-layout row wrap class="my-5">
@@ -41,18 +42,6 @@
             </v-flex>
           </v-layout>
         </div>
-      </section>
-
-      <section>
-        <v-parallax :src="background" height="500">
-          <div class="fill-height overlay-gradient">
-            <v-layout column align-center justify-center>
-              <div
-                class="headline white--text text-xs-center"
-              >Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-            </v-layout>
-          </div>
-        </v-parallax>
       </section>
     </main>
   </v-container>
@@ -99,6 +88,10 @@ export default {
 .overlay-gradient {
   background-image: linear-gradient(to bottom, transparent 0%, black 100%),
     linear-gradient(to top, transparent 0%, black 100%);
+}
+.overlay-gradient-red {
+  background-image: linear-gradient(to bottom, #67434366 0%, #b52020a8 100%),
+    linear-gradient(to top, #000000a8 0%, #350000e8 100%);
 }
 .header-btn {
   width: 220px;
