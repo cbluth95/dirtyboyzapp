@@ -4,7 +4,7 @@
       <v-layout>
         <v-flex xs12>
           <v-card light>
-            <v-img cover :src="truckImg" max-height="700" width="100%">
+            <v-img cover :src="truckImg" max-height="800" width="100%">
               <div class="fill-height overlay-gradient-red">
                 <v-container fill-height>
                   <v-layout row wrap align-center justify-center>
@@ -44,7 +44,7 @@
                                     <v-layout row wrap justify-center>
                                       <v-flex xs12 sm6 ma-2>
                                         <v-img
-                                          max-height="400"
+                                          height="400"
                                           contain
                                           :src="item.img"
                                           class="animated fadeIn"

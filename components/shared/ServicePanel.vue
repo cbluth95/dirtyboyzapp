@@ -14,13 +14,16 @@
             <v-container fill-height>
               <v-layout row wrap align-center>
                 <v-flex xs12 mt-2 justify-center text-xs-center>
-                  <v-img
-                    cover
-                    :src="item.icon"
-                    class="service-icon"
-                    height="150px"
-                    :width="item.imgWidth"
-                  ></v-img>
+                  <v-avatar size="150" color="white" class="animated fadeIn">
+                    <v-img
+                      cover
+                      :src="item.icon"
+                      class="service-icon"
+                      height="150px"
+                      :width="item.imgWidth"
+                    ></v-img>
+                  </v-avatar>
+
                   <p class="mt-2 headline">{{item.title}}</p>
                 </v-flex>
                 <v-flex xs12 ml-2 mr-2>
