@@ -8,27 +8,26 @@
               <div class="fill-height overlay-gradient-red">
                 <v-container fill-height>
                   <v-layout row wrap align-center justify-center>
-                    <v-flex xs12 mt-4>
-                      <v-tabs
-                        dark
-                        height="75"
-                        v-model="model"
-                        centered
-                        color="transparent"
-                        slider-color="red"
-                      >
-                        <v-tab
-                          style="padding: 0px"
-                          v-for="(item, i) in modelItems"
-                          :key="i"
-                          :href="`#tab-${i}`"
-                        >
-                          <v-btn dark outline>{{item.tabTitle}}</v-btn>
-                        </v-tab>
-                      </v-tabs>
-                    </v-flex>
-
                     <v-flex xs12 ml-4 mr-4 mb-2>
+                      <v-flex xs12 mb-2 mt-4>
+                        <v-tabs
+                          dark
+                          height="75"
+                          v-model="model"
+                          centered
+                          color="transparent"
+                          slider-color="red"
+                        >
+                          <v-tab
+                            style="padding: 0px"
+                            v-for="(item, i) in modelItems"
+                            :key="i"
+                            :href="`#tab-${i}`"
+                          >
+                            <v-btn dark outline>{{item.tabTitle}}</v-btn>
+                          </v-tab>
+                        </v-tabs>
+                      </v-flex>
                       <v-card color="grey lighten-2">
                         <v-container fill-height>
                           <v-layout row wrap align-center>
@@ -43,25 +42,21 @@
                                 >
                                   <v-container>
                                     <v-layout row wrap justify-center>
-                                      <v-flex xs12 sm3>
+                                      <v-flex xs12 sm6 ma-2>
                                         <v-img
-                                          height="400"
+                                          max-height="400"
                                           contain
                                           :src="item.img"
                                           class="animated fadeIn"
                                         ></v-img>
                                       </v-flex>
-                                      <v-flex xs12 sm3 text-xs-center mt-5>
+                                      <v-flex xs12 sm4 text-xs-center ma-4>
                                         <h1 class="animated fadeInDown">{{item.tabTitle}}</h1>
                                         <v-divider></v-divider>
                                         <p class="body-2 font-weight-light">{{item.text}}</p>
                                       </v-flex>
                                     </v-layout>
                                   </v-container>
-
-                                  <!-- <v-card flat>
-                                    <v-card-text v-text="item.text"></v-card-text>
-                                  </v-card>-->
                                 </v-tab-item>
                               </v-tabs-items>
                             </v-flex>
@@ -73,7 +68,6 @@
                 </v-container>
               </div>
             </v-img>
-            <!-- TODO fix style here -->
           </v-card>
         </v-flex>
       </v-layout>
