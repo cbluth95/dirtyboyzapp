@@ -1,7 +1,7 @@
 <template>
   <v-app dark style="background-color: white;">
     <layout-main-nav/>
-    <v-content>
+    <v-content v-show="loaded" class="animated fadeIn">
       <v-container fluid>
         <nuxt/>
       </v-container>
@@ -23,15 +23,32 @@
         </v-card-actions>
       </v-card>
     </v-footer>
+
+    <v-btn
+      v-show="isScrolled"
+      id="toTop"
+      class="md-5 mr-3 elevation-21 animated zoomIn"
+      dark
+      fab
+      button
+      bottom
+      right
+      color="#ffc200"
+      fixed
+      @click="scrollTop"
+    >
+      <v-icon dark>keyboard_arrow_up</v-icon>
+    </v-btn>
   </v-app>
 </template>
 
 <script>
-import wyoPcLogo from '@/assets/wyopclogo.png'
 export default {
   data() {
     return {
-      wyopcLogo: wyoPcLogo,
+      wyopcLogo: require('@/assets/wyopclogo.png'),
+      loaded: false,
+      isScrolled: false,
       clipped: false,
       drawer: false,
       fixed: false,
@@ -52,11 +69,41 @@ export default {
       rightDrawer: false,
       title: 'Vuetify.js'
     }
+  },
+  created() {
+    // eventually fix this image load time problem
+    setTimeout(this.loadApp, 200)
+    if (process.browser) {
+      window.onscroll = this.handleScroll
+    }
+  },
+  methods: {
+    loadApp() {
+      this.loaded = !this.loaded
+    },
+    scrollTop() {
+      window.scrollTo(0, 0)
+    },
+    handleScroll() {
+      if (process.browser) {
+        if (
+          document.body.scrollTop > 100 ||
+          document.documentElement.scrollTop > 100
+        ) {
+          this.isScrolled = true
+        } else {
+          this.isScrolled = false
+        }
+      }
+    }
   }
 }
 </script>
 
 <style>
+html {
+  scroll-behavior: smooth;
+}
 .container {
   padding: 0px !important;
 }

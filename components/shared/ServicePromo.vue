@@ -28,7 +28,7 @@
                           </v-tab>
                         </v-tabs>
                       </v-flex>
-                      <v-card color="grey lighten-2">
+                      <v-card color="grey lighten-2" max-height="540">
                         <v-container fill-height>
                           <v-layout row wrap align-center>
                             <v-flex xs12>
@@ -44,7 +44,7 @@
                                     <v-layout row wrap justify-center>
                                       <v-flex xs12 sm6 ma-2>
                                         <v-img
-                                          height="400"
+                                          max-height="400"
                                           contain
                                           :src="item.img"
                                           class="animated fadeIn"

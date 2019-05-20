@@ -6,7 +6,7 @@
           <p class="display-3 font-weight-medium black--text">Gallery</p>
           <v-divider class="black"></v-divider>
         </v-flex>
-        <v-flex xs12 mt-4 mb-4>
+        <!-- <v-flex xs12 mt-4 mb-4>
           <v-card>
             <v-container grid-list-sm fluid>
               <v-layout row wrap>
@@ -29,7 +29,7 @@
               </v-layout>
             </v-container>
           </v-card>
-        </v-flex>
+        </v-flex>-->
       </v-layout>
     </v-container>
   </section>

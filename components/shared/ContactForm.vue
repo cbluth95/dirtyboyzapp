@@ -54,15 +54,6 @@
                 required
                 placeholder="79938"
               ></v-text-field>
-              <v-autocomplete
-                ref="country"
-                v-model="country"
-                :rules="[() => !!country || 'This field is required']"
-                :items="countries"
-                label="Country"
-                placeholder="Select..."
-                required
-              ></v-autocomplete>
             </v-card-text>
             <v-divider class="mt-5"></v-divider>
             <v-card-actions>
@@ -86,3 +77,60 @@
     </v-container>
   </section>
 </template>
+
+<script>
+export default {
+  data: () => ({
+    errorMessages: '',
+    name: null,
+    address: null,
+    city: null,
+    state: null,
+    zip: null,
+    formHasErrors: false
+  }),
+
+  computed: {
+    form() {
+      return {
+        name: this.name,
+        address: this.address,
+        city: this.city,
+        state: this.state,
+        zip: this.zip
+      }
+    }
+  },
+
+  watch: {
+    name() {
+      this.errorMessages = ''
+    }
+  },
+
+  methods: {
+    addressCheck() {
+      this.errorMessages = this.address && !this.name ? "Hey! I'm required" : ''
+
+      return true
+    },
+    resetForm() {
+      this.errorMessages = []
+      this.formHasErrors = false
+
+      Object.keys(this.form).forEach(f => {
+        this.$refs[f].reset()
+      })
+    },
+    submit() {
+      this.formHasErrors = false
+
+      Object.keys(this.form).forEach(f => {
+        if (!this.form[f]) this.formHasErrors = true
+
+        this.$refs[f].validate(true)
+      })
+    }
+  }
+}
+</script>
