@@ -53,7 +53,7 @@ export default {
       }
     }
   },
-  created() {
+  beforeMount() {
     if (process.browser) {
       window.addEventListener('resize', this.handleResize)
       this.handleResize()

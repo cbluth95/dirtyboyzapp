@@ -10,7 +10,8 @@
       </v-btn>
     </v-toolbar>-->
     <v-navigation-drawer
-      class="hidden-lg-and-up drawerBack grey lighten-1"
+      class="hidden-lg-and-up drawerBack"
+      style="background-color: #34221a;border-right: 1px solid #ffc200;"
       persistent
       :mini-variant="miniVariant"
       :clipped="clipped"
@@ -22,9 +23,9 @@
       <v-list>
         <v-list-tile value="true" v-for="(item, i) in navItems" :key="i" :to="item.path">
           <v-list-tile-action>
-            <v-icon color="red" v-html="item.icon"></v-icon>
+            <v-icon color="black" v-html="item.icon"></v-icon>
           </v-list-tile-action>
-          <v-list-tile-content class="black--text">
+          <v-list-tile-content class="link-title black--text">
             <v-list-tile-title v-if="item.dropdown == null">{{item.title}}</v-list-tile-title>
             <v-menu open-on-hover bottom offset-y v-if="item.dropdown == true" light>
               <v-list-tile-title slot="activator">
@@ -51,7 +52,12 @@
       <v-container fill-height fluid>
         <v-layout row align-center justify-center text-xs-center>
           <router-link to="/">
-            <img src="../../assets/logo1.png" class="animated rubberBand" style="height: 80px" alt>
+            <img
+              src="../../assets/logo1.png"
+              class="animated rubberBand"
+              style="height: 80px; margin-left: -36px;"
+              alt
+            >
           </router-link>
         </v-layout>
         <v-layout justify-center class="hidden-md-and-down">
@@ -161,12 +167,22 @@ export default {
 #nav {
   z-index: 10;
 }
+.v-list {
+  padding: 0;
+}
+.v-list > div {
+  background-color: #ffc200;
+}
 .navBtn {
   width: 150px;
   font-size: 1.25em;
   font-family: 'Baloo Bhai', cursive;
   /* font-family: 'Merriweather', serif; */
   /* font-family: 'Gravitas One', cursive; */
+}
+.link-title {
+  font-size: 1.25em;
+  font-family: 'Baloo Bhai', cursive;
 }
 a.navBtn.v-btn--active {
   font-size: 1.5em;

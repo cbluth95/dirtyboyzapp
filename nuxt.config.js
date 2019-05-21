@@ -37,6 +37,7 @@ module.exports = {
       }
     ]
   },
+  serverMiddleware: ['~/server/api/index.js'],
 
   /*
    ** Customize the progress-bar color

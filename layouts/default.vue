@@ -70,9 +70,9 @@ export default {
       title: 'Vuetify.js'
     }
   },
-  created() {
+  beforeMount() {
     // eventually fix this image load time problem
-    setTimeout(this.loadApp, 200)
+    this.loadApp()
     if (process.browser) {
       window.onscroll = this.handleScroll
     }

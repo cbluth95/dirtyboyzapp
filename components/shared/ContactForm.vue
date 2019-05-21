@@ -35,7 +35,7 @@
                 v-model="city"
                 :rules="[() => !!city || 'This field is required', addressCheck]"
                 label="City"
-                placeholder="El Paso"
+                placeholder="Rawlins"
                 required
               ></v-text-field>
               <v-text-field
@@ -44,7 +44,7 @@
                 :rules="[() => !!state || 'This field is required']"
                 label="State/Province/Region"
                 required
-                placeholder="TX"
+                placeholder="WY"
               ></v-text-field>
               <v-text-field
                 ref="zip"
@@ -52,7 +52,7 @@
                 :rules="[() => !!zip || 'This field is required']"
                 label="ZIP / Postal Code"
                 required
-                placeholder="79938"
+                placeholder="82301"
               ></v-text-field>
             </v-card-text>
             <v-divider class="mt-5"></v-divider>

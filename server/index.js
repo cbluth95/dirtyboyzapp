@@ -1,6 +1,7 @@
 const express = require('express')
 const consola = require('consola')
 const { Nuxt, Builder } = require('nuxt')
+
 const app = express()
 
 // Import and Set Nuxt.js options
@@ -27,7 +28,7 @@ async function start() {
   // Listen the server
   app.listen(port, host)
   consola.ready({
-    message: `Server listening on http://${host}:${port}`,
+    message: `Server listening on http://${host}:${port} lets build some shit`,
     badge: true
   })
 }
