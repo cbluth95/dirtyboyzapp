@@ -25,7 +25,7 @@
           <v-list-tile-action>
             <v-icon color="black" v-html="item.icon"></v-icon>
           </v-list-tile-action>
-          <v-list-tile-content class="link-title black--text">
+          <v-list-tile-content class="link-title">
             <v-list-tile-title v-if="item.dropdown == null">{{item.title}}</v-list-tile-title>
             <v-menu open-on-hover bottom offset-y v-if="item.dropdown == true" light>
               <v-list-tile-title slot="activator">
@@ -164,6 +164,10 @@ export default {
 </script>
 
 <style>
+/* shouldnt have to do this */
+.primary--text {
+  color: black !important;
+}
 #nav {
   z-index: 10;
 }
@@ -183,6 +187,9 @@ export default {
 .link-title {
   font-size: 1.25em;
   font-family: 'Baloo Bhai', cursive;
+}
+a.v-list__tile--active {
+  color: white !important;
 }
 a.navBtn.v-btn--active {
   font-size: 1.5em;

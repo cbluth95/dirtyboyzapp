@@ -107,5 +107,9 @@ html {
 .container {
   padding: 0px !important;
 }
+.pTitle {
+  font-size: 2.5em;
+  font-family: 'Baloo Bhai', cursive;
+}
 </style>
 

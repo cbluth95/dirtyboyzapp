@@ -12,7 +12,7 @@
 
                 <v-flex xs12 sm6 pa-2>
                   <v-card light>
-                    <div class="headline font-weight-medium text-xs-center mt-2 mb-2">About Us</div>
+                    <div class="pTitle text-xs-center mt-2 mb-2">About Us</div>
                     <v-divider></v-divider>
                     <v-container fill-height>
                       <v-layout align-center>

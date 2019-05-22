@@ -28,7 +28,7 @@
                           </v-tab>
                         </v-tabs>
                       </v-flex>
-                      <v-card color="grey lighten-2" max-height="540">
+                      <v-card color="grey lighten-2" max-height="600">
                         <v-container fill-height>
                           <v-layout row wrap align-center>
                             <v-flex xs12>

@@ -5,12 +5,25 @@ const router = express.Router()
 
 // Send Contact Email
 router.post('/send', (req, res) => {
-  console.log(req.body)
-  if (req.body.valid) {
+  // quick and simple post validation haha
+  let reqArr = []
+  let valid = false
+
+  Object.keys(req.body).forEach(item => {
+    reqArr.push(item)
+  })
+
+  if (reqArr.length == 6) {
+    valid = true
+  }
+
+  if (valid) {
     const email = {
       name: req.body.name,
-      email: req.body.email,
-      phone: req.body.phone,
+      address: req.body.address,
+      city: req.body.city,
+      state: req.body.state,
+      zip: req.body.zip,
       msg: req.body.msg
     }
     let transporter = nodemailer.createTransport({
@@ -21,17 +34,23 @@ router.post('/send', (req, res) => {
       }
     })
     let ContactMailOptions = {
-      from: '"The Movies Contact Form" <contact@themovies3.com>',
+      from: '"Dirty Boyz Contact Form"',
       to: 'cjb9252@gmail.com', // `${req.body.dynRecip}`
-      subject: 'New message from test contact form!',
+      subject: 'Dirty Boyz Contact Form',
       html: `
-              <p>${email.name} said: ${email.msg}</p><br><br>
-                <p>Sender Info:</p>
-                <p>Name: ${email.name}</p>
-                <p>Email: ${email.email}</p>
-                <p>Phone Number: <a href="tel:${email.phone}">${
-        email.phone
-      }</a></p>`
+      <div style="background-color: #F5F5F5;">
+      <h2 style="text-align: center;">Sender Message:</h2>
+      <h4 style="text-align:center;">${email.name} said: ${
+        email.msg
+      }</h4><br><br>
+      <h2 style="color: red;">Sender Info:</h2>
+        <p>Name: ${email.name}</p>
+        <p>Address: ${email.address}</p>
+        <p>City: ${email.city}</p>
+        <p>State: ${email.state}</p>
+        <p>Zip: ${email.zip}</p>
+      </div>
+      `
     }
     transporter.sendMail(ContactMailOptions, (error, info) => {
       if (error) {

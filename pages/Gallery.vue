@@ -3,7 +3,7 @@
     <v-container>
       <v-layout row wrap justify-center text-xs-center>
         <v-flex xs12 mt-2>
-          <p class="display-3 font-weight-medium black--text">Gallery</p>
+          <p class="pTitle black--text">Gallery</p>
           <v-divider class="black"></v-divider>
         </v-flex>
         <!-- <v-flex xs12 mt-4 mb-4>

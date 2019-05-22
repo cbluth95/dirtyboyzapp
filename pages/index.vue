@@ -7,7 +7,10 @@
             <v-container bg fill-height grid-list-md text-xs-center>
               <v-layout row wrap align-center justify-center>
                 <v-flex xs12 text-xs-center>
-                  <h1 style="font-size: 4em">We Want Your Trash!</h1>
+                  <h1
+                    style="font-size: 6em;color: #ffc200;line-height: 1;"
+                    class="pTitle"
+                  >We Want Your Trash!</h1>
                   <v-btn class="header-btn" outline large>Get a free estimate</v-btn>
                   <v-btn class="header-btn" outline large to="/services">Our Services</v-btn>
                 </v-flex>

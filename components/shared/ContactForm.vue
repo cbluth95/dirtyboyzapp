@@ -3,9 +3,9 @@
   <section>
     <v-container fluid>
       <v-layout row wrap justify-center>
-        <v-flex xs12>
+        <v-flex xs12 mt-2>
           <v-card light ref="form">
-            <div class="headline font-weight-medium text-xs-center mt-2 mb-2">Contact Us</div>
+            <div style="background-color: #e0e0e0;" class="pTitle text-xs-center">Contact Us</div>
             <v-divider></v-divider>
             <v-card-text>
               <v-text-field
@@ -54,8 +54,31 @@
                 required
                 placeholder="82301"
               ></v-text-field>
+              <v-text-field
+                ref="msg"
+                v-model="msg"
+                name="message"
+                label="message"
+                id="msg"
+                :counter="100"
+                :rules="msgRules"
+                required
+              ></v-text-field>
             </v-card-text>
             <v-divider class="mt-5"></v-divider>
+            <!-- Form MSG -->
+            <v-snackbar
+              v-model="alert"
+              color="#34221a"
+              absolute
+              :bottom="true"
+              :multi-line="true"
+              :timeout="3000"
+            >
+              {{ sText }}
+              <v-btn color="red" light @click="alert = false">Close</v-btn>
+            </v-snackbar>
+            <!-- End Form MSG -->
             <v-card-actions>
               <v-btn flat>Cancel</v-btn>
               <v-spacer></v-spacer>
@@ -82,12 +105,20 @@
 export default {
   data: () => ({
     errorMessages: '',
+    loading: false,
+    alert: false,
+    sText: 'Your message has been sent.',
     name: null,
     address: null,
     city: null,
     state: null,
     zip: null,
-    formHasErrors: false
+    msg: null,
+    formHasErrors: false,
+    msgRules: [
+      v => !!v || 'A message is required',
+      v => (v && v.length <= 100) || 'Message must be less than 100 characters'
+    ]
   }),
 
   computed: {
@@ -97,7 +128,8 @@ export default {
         address: this.address,
         city: this.city,
         state: this.state,
-        zip: this.zip
+        zip: this.zip,
+        msg: this.msg
       }
     }
   },
@@ -130,6 +162,27 @@ export default {
 
         this.$refs[f].validate(true)
       })
+
+      if (this.formHasErrors) console.log('Debug: form has ERRORS')
+      else {
+        this.loading = true
+        let email = {
+          name: this.name,
+          address: this.address,
+          city: this.city,
+          state: this.state,
+          zip: this.zip,
+          msg: this.msg
+        }
+        // 104.248.186.212
+        this.$axios
+          .post('http://104.248.186.212/api/email/send', email)
+          .then(res => {
+            this.alert = true
+            this.resetForm()
+            this.loading = false
+          })
+      }
     }
   }
 }
