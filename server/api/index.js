@@ -1,5 +1,4 @@
 const express = require('express')
-const nodemailer = require('nodemailer')
 const mail = require('./routes/email')
 const bodyParser = require('body-parser')
 const app = express()

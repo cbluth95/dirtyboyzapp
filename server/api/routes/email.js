@@ -40,9 +40,9 @@ router.post('/send', (req, res) => {
       html: `
       <div style="background-color: #F5F5F5;">
       <h2 style="text-align: center;">Sender Message:</h2>
-      <h4 style="text-align:center;">${email.name} said: ${
-        email.msg
-      }</h4><br><br>
+      <h4 style="text-align:center;">${email.name} said:</h4>
+      <p style="text-align:center;font-size:20px;">${email.msg}</p>
+      <br>
       <h2 style="color: red;">Sender Info:</h2>
         <p>Name: ${email.name}</p>
         <p>Address: ${email.address}</p>
