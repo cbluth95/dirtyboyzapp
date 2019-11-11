@@ -57,7 +57,7 @@
               class="animated rubberBand"
               style="height: 80px; margin-left: -36px;"
               alt
-            >
+            />
           </router-link>
         </v-layout>
         <v-layout justify-center class="hidden-md-and-down">
@@ -141,11 +141,11 @@ export default {
           title: 'Services',
           path: '/services'
         },
-        {
-          icon: '',
-          title: 'Gallery',
-          path: '/gallery'
-        },
+        // {
+        //   icon: '',
+        //   title: 'Gallery',
+        //   path: '/gallery'
+        // },
         {
           icon: '',
           title: 'About',

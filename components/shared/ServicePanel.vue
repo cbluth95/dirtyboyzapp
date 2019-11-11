@@ -10,7 +10,7 @@
           v-for="(item, i) in serviceList"
           :key="i"
         >
-          <v-card light height="400px">
+          <v-card light height="300px">
             <v-container fill-height>
               <v-layout row wrap align-center>
                 <v-flex xs12 mt-2 justify-center text-xs-center>
@@ -26,13 +26,13 @@
 
                   <p class="mt-2 headline">{{item.title}}</p>
                 </v-flex>
-                <v-flex xs12 ml-2 mr-2>
+                <!-- <v-flex xs12 ml-2 mr-2>
                   <v-divider></v-divider>
                 </v-flex>
 
                 <v-flex xs12 pa-3 text-xs-center>
                   <p>{{item.info}}</p>
-                </v-flex>
+                </v-flex>-->
               </v-layout>
             </v-container>
           </v-card>
@@ -58,52 +58,24 @@ export default {
         {
           icon: this.recycleImg,
           title: 'Recycling Services',
-          info: `Lorem ipsum dolor sit amet,
-             consectetur adipiscing elit,
-             sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-             Justo eget magna fermentum iaculis eu non diam phasellus.
-             Dictum fusce ut placerat orci nulla pellentesque.
-             Enim praesent elementum facilisis leo vel fringilla est ullamcorper eget.
-             Pulvinar mattis nunc sed blandit.`,
           imgWidth: 155,
           btnTitle: ''
         },
         {
           icon: this.wasteImg,
           title: 'Waste Management',
-          info: `Lorem ipsum dolor sit amet,
-             consectetur adipiscing elit,
-             sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-             Justo eget magna fermentum iaculis eu non diam phasellus.
-             Dictum fusce ut placerat orci nulla pellentesque.
-             Enim praesent elementum facilisis leo vel fringilla est ullamcorper eget.
-             Pulvinar mattis nunc sed blandit.`,
           imgWidth: 267,
           btnTitle: ''
         },
         {
           icon: this.cleanoutImg,
           title: 'House Clean Outs',
-          info: `Lorem ipsum dolor sit amet,
-             consectetur adipiscing elit,
-             sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-             Justo eget magna fermentum iaculis eu non diam phasellus.
-             Dictum fusce ut placerat orci nulla pellentesque.
-             Enim praesent elementum facilisis leo vel fringilla est ullamcorper eget.
-             Pulvinar mattis nunc sed blandit.`,
           imgWidth: 200,
           btnTitle: ''
         },
         {
           icon: this.bulkPickupImg,
           title: 'Bulk Pickup',
-          info: `Lorem ipsum dolor sit amet,
-             consectetur adipiscing elit,
-             sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-             Justo eget magna fermentum iaculis eu non diam phasellus.
-             Dictum fusce ut placerat orci nulla pellentesque.
-             Enim praesent elementum facilisis leo vel fringilla est ullamcorper eget.
-             Pulvinar mattis nunc sed blandit.`,
           imgWidth: 267,
           btnTitle: ''
         }
