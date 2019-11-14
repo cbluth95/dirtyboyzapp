@@ -92,13 +92,13 @@ export default {
           tabTitle: 'Commercial',
           img: this.commercialImg,
           text:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Feugiat nibh sed pulvinar proin. Feugiat pretium nibh ipsum consequat nisl vel pretium. Viverra ipsum nunc aliquet bibendum enim. Vitae congue eu consequat ac felis donec et odio pellentesque.'
+            'Dirty Boyz Sanitation proudly offers reliable and affordable commercial garbage collection and we work to meet our customer’s needs. Our wide assortment of receptacles ensure we have the right options to fit the unique trash removal demands of your business. Please call (307) 321-3874 and we will work with you to find the best solution to meet your needs.'
         },
         {
           tabTitle: 'Residential',
           img: this.wasteImg,
           text:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Feugiat nibh sed pulvinar proin. Feugiat pretium nibh ipsum consequat nisl vel pretium. Viverra ipsum nunc aliquet bibendum enim. Vitae congue eu consequat ac felis donec et odio pellentesque.'
+            'Dirty Boyz Sanitation is proud to provide top quality residential garbage removal & recycling services. Please call (307) 321-3874 to start residential trash service for your home.'
         }
       ]
       return items

@@ -14,7 +14,7 @@
         </v-flex>
 
         <v-flex xs12 sm6 text-xs-center>
-          <p class="black--text title" style="white-space:nowrap; padding-left:20px"> Acceptable Commercial Trash</p>
+          <p class="black--text title" style=" padding-left:20px"> Acceptable Commercial Trash</p>
           <v-divider style="margin:10px" class="black"></v-divider>
             <p style="color:black; text-align:left;">
                 <ul>

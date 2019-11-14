@@ -11,7 +11,7 @@
                     style="font-size: 6em;color: #ffc200;line-height: 1;"
                     class="pTitle"
                   >We Want Your Trash!</h1>
-                  <v-btn class="header-btn" outline large>Get a free estimate</v-btn>
+                  <v-btn class="header-btn" outline large to="/contact">Get a free estimate</v-btn>
                   <v-btn class="header-btn" outline large to="/services">Our Services</v-btn>
                 </v-flex>
               </v-layout>
@@ -32,10 +32,10 @@
           </div>
         </v-parallax>-->
       </section>
-      <shared-service-panel/>
+      <shared-service-panel />
       <!-- <shared-news-updates/> -->
-      <shared-service-promo/>
-      <shared-contact-us/>
+      <shared-service-promo />
+      <shared-contact-us />
     </main>
   </v-container>
 </template>
