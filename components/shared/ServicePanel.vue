@@ -2,14 +2,7 @@
   <section>
     <v-container fluid>
       <v-layout row wrap>
-        <v-flex
-          style="background-color: white;"
-          xs12
-          sm6
-          md3
-          v-for="(item, i) in serviceList"
-          :key="i"
-        >
+        <v-flex style="background-color: white;" xs12 sm6 v-for="(item, i) in serviceList" :key="i">
           <v-card light height="300px">
             <v-container fill-height>
               <v-layout row wrap align-center>
@@ -24,7 +17,7 @@
                     ></v-img>
                   </v-avatar>
 
-                  <p class="mt-2 headline">{{item.title}}</p>
+                  <p class="mt-2 headline">{{ item.title }}</p>
                 </v-flex>
                 <!-- <v-flex xs12 ml-2 mr-2>
                   <v-divider></v-divider>
@@ -66,19 +59,19 @@ export default {
           title: 'Waste Management',
           imgWidth: 267,
           btnTitle: ''
-        },
-        {
-          icon: this.cleanoutImg,
-          title: 'House Clean Outs',
-          imgWidth: 200,
-          btnTitle: ''
-        },
-        {
-          icon: this.bulkPickupImg,
-          title: 'Bulk Pickup',
-          imgWidth: 267,
-          btnTitle: ''
         }
+        // {
+        //   icon: this.cleanoutImg,
+        //   title: 'House Clean Outs',
+        //   imgWidth: 200,
+        //   btnTitle: ''
+        // },
+        // {
+        //   icon: this.bulkPickupImg,
+        //   title: 'Bulk Pickup',
+        //   imgWidth: 267,
+        //   btnTitle: ''
+        // }
       ]
       return items
     }
@@ -92,5 +85,3 @@ export default {
   margin-right: auto;
 }
 </style>
-
-
