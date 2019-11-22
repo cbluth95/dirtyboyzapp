@@ -8,11 +8,11 @@
         </v-flex>
         <v-flex xs12 mt-2>
           <v-flex xs12 md6 style="margin-left: auto;margin-right:auto;padding:4px">
-            <v-card :height="auto" color="#34221a">
+            <v-card height="auto" color="#34221a">
               <p
                 class="headline"
                 style="padding:6px"
-              >Dirty Boyz Sanitation is proud to provide top quality residential garbage removal services. Please call (307) 321-3874 to start residential trash service for your home.</p>
+              >Dirty Boyz Sanitation Service, inc offers valet sercice as well as alley pickup. We do not require trash rollouts to be placed curbside. We are proud to provide top quality residential garbage removal & recycling services. Please call (307) 321-3874 to start residential trash service for your home.</p>
             </v-card>
           </v-flex>
         </v-flex>

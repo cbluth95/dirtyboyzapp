@@ -28,7 +28,7 @@
                           </v-tab>
                         </v-tabs>
                       </v-flex>
-                      <v-card color="grey lighten-2" max-height="600">
+                      <v-card color="grey lighten-2" height="550">
                         <v-container fill-height>
                           <v-layout row wrap align-center>
                             <v-flex xs12>
@@ -98,7 +98,7 @@ export default {
           tabTitle: 'Residential',
           img: this.wasteImg,
           text:
-            'Dirty Boyz Sanitation is proud to provide top quality residential garbage removal & recycling services. Please call (307) 321-3874 to start residential trash service for your home.'
+            'Dirty Boyz Sanitation Service, inc offers valet sercice as well as alley pickup. We do not require trash rollouts to be placed curbside. We are proud to provide top quality residential garbage removal & recycling services. Please call (307) 321-3874 to start residential trash service for your home.'
         }
       ]
       return items
