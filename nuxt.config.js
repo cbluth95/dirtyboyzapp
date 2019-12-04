@@ -37,7 +37,9 @@ module.exports = {
       }
     ]
   },
-  serverMiddleware: ['~/server/api/index.js'],
+  serverMiddleware: [
+    { path: '/api/email/send', handler: '~/server/api/index.js' }
+  ],
 
   /*
    ** Customize the progress-bar color

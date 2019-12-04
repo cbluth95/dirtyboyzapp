@@ -28,14 +28,15 @@ router.post('/send', (req, res) => {
     }
     let transporter = nodemailer.createTransport({
       service: 'gmail',
+      secure: false, // use SSL,
       auth: {
-        user: 'cjb9252@gmail.com',
+        user: 'dboyzsanitation@gmail.com',
         pass: 'Midnight1995!'
       }
     })
     let ContactMailOptions = {
       from: '"Dirty Boyz Contact Form"',
-      to: 'cjb9252@gmail.com', // `${req.body.dynRecip}`
+      to: 'dbsanitation@hotmail.com',
       subject: 'Dirty Boyz Contact Form',
       html: `
       <div style="background-color: #F5F5F5;">
@@ -59,6 +60,7 @@ router.post('/send', (req, res) => {
       console.log('Message sent: %s', info.messageId)
       console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info))
     })
+    console.log(res.status)
     res.status(201).send('Message has been sent')
   } else {
     let err = 'Cannot Send message. Form is not complete'

@@ -176,7 +176,7 @@ export default {
         }
         // 104.248.186.212
         this.$axios
-          .post('http://104.248.186.212/api/email/send', email)
+          .post('https://dirtyboyzsanitation.com/api/email/send', email)
           .then(res => {
             this.alert = true
             this.resetForm()
