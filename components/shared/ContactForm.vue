@@ -1,11 +1,15 @@
-
 <template>
   <section>
     <v-container fluid>
       <v-layout row wrap justify-center>
         <v-flex xs12 mt-2>
           <v-card light ref="form">
-            <div style="background-color: #e0e0e0;" class="pTitle text-xs-center">Contact Us</div>
+            <div
+              style="background-color: #e0e0e0;"
+              class="pTitle text-xs-center"
+            >
+              Contact Us
+            </div>
             <v-divider></v-divider>
             <v-card-text>
               <v-text-field
@@ -18,13 +22,33 @@
                 required
               ></v-text-field>
               <v-text-field
+                ref="mail"
+                v-model="mail"
+                :rules="[() => !!mail || 'This field is required']"
+                :error-messages="errorMessages"
+                label="Email"
+                placeholder="JohnDoe@email.com"
+                required
+              ></v-text-field>
+              <v-text-field
+                ref="phone"
+                v-model="phone"
+                :rules="[() => !!phone || 'This field is required']"
+                :error-messages="errorMessages"
+                label="Phone"
+                placeholder="(111) 222-3333"
+                required
+              ></v-text-field>
+              <v-text-field
                 ref="address"
                 v-model="address"
                 :rules="[
-              () => !!address || 'This field is required',
-              () => !!address && address.length <= 25 || 'Address must be less than 25 characters',
-              addressCheck
-            ]"
+                  () => !!address || 'This field is required',
+                  () =>
+                    (!!address && address.length <= 25) ||
+                    'Address must be less than 25 characters',
+                  addressCheck
+                ]"
                 label="Address Line"
                 placeholder="Snowy Rock Pl"
                 counter="25"
@@ -33,7 +57,10 @@
               <v-text-field
                 ref="city"
                 v-model="city"
-                :rules="[() => !!city || 'This field is required', addressCheck]"
+                :rules="[
+                  () => !!city || 'This field is required',
+                  addressCheck
+                ]"
                 label="City"
                 placeholder="Rawlins"
                 required
@@ -60,7 +87,7 @@
                 name="message"
                 label="message"
                 id="msg"
-                :counter="100"
+                :counter="150"
                 :rules="msgRules"
                 required
               ></v-text-field>
@@ -80,7 +107,7 @@
             </v-snackbar>
             <!-- End Form MSG -->
             <v-card-actions>
-              <v-btn flat>Cancel</v-btn>
+              <!-- <v-btn flat>Cancel</v-btn> -->
               <v-spacer></v-spacer>
               <v-slide-x-reverse-transition>
                 <v-tooltip v-if="formHasErrors" left>
@@ -108,16 +135,18 @@ export default {
     loading: false,
     alert: false,
     sText: 'Your message has been sent.',
-    name: null,
-    address: null,
-    city: null,
-    state: null,
-    zip: null,
-    msg: null,
+    name: '',
+    mail: '',
+    phone: '',
+    address: '',
+    city: '',
+    state: '',
+    zip: '',
+    msg: '',
     formHasErrors: false,
     msgRules: [
       v => !!v || 'A message is required',
-      v => (v && v.length <= 100) || 'Message must be less than 100 characters'
+      v => (v && v.length <= 150) || 'Message must be less than 150 characters'
     ]
   }),
 
@@ -125,6 +154,8 @@ export default {
     form() {
       return {
         name: this.name,
+        mail: this.mail,
+        phone: this.phone,
         address: this.address,
         city: this.city,
         state: this.state,
@@ -168,6 +199,8 @@ export default {
         this.loading = true
         let email = {
           name: this.name,
+          mail: this.mail,
+          phone: this.phone,
           address: this.address,
           city: this.city,
           state: this.state,

@@ -21,23 +21,39 @@
       app
     >
       <v-list>
-        <v-list-tile value="true" v-for="(item, i) in navItems" :key="i" :to="item.path">
+        <v-list-tile
+          value="true"
+          v-for="(item, i) in navItems"
+          :key="i"
+          :to="item.path"
+        >
           <v-list-tile-action>
             <v-icon color="black" v-html="item.icon"></v-icon>
           </v-list-tile-action>
           <v-list-tile-content class="link-title">
-            <v-list-tile-title v-if="item.dropdown == null">{{item.title}}</v-list-tile-title>
-            <v-menu open-on-hover bottom offset-y v-if="item.dropdown == true" light>
+            <v-list-tile-title v-if="item.dropdown == null">{{
+              item.title
+            }}</v-list-tile-title>
+            <v-menu
+              open-on-hover
+              bottom
+              offset-y
+              v-if="item.dropdown == true"
+              light
+            >
               <v-list-tile-title slot="activator">
-                {{item.title}}
-                <v-icon v-for="i in item.subItems" :key="i.id" v-html="i.icon"></v-icon>
+                {{ item.title }}
+                <v-icon
+                  v-for="i in item.subItems"
+                  :key="i.id"
+                  v-html="i.icon"
+                ></v-icon>
               </v-list-tile-title>
               <v-list>
                 <v-list-tile
                   v-for="(item, index) in item.subItems"
                   :to="item.path"
                   :key="index"
-                  @click
                 >
                   <v-list-tile-title>{{ item.title }}</v-list-tile-title>
                 </v-list-tile>
@@ -47,8 +63,17 @@
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
-    <v-toolbar color="#34221a" height="100" app :clipped-left="clipped" class="main-nav">
-      <v-toolbar-side-icon class="hidden-lg-and-up" @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+    <v-toolbar
+      color="#34221a"
+      height="100"
+      app
+      :clipped-left="clipped"
+      class="main-nav"
+    >
+      <v-toolbar-side-icon
+        class="hidden-lg-and-up"
+        @click.stop="drawer = !drawer"
+      ></v-toolbar-side-icon>
       <v-container fill-height fluid>
         <v-layout row align-center justify-center text-xs-center>
           <router-link to="/">
@@ -68,18 +93,33 @@
               :ripple="{ class: 'primary--text' }"
               flat
               :to="item.path"
-            >{{item.title}}</v-btn>
-            <v-menu open-on-hover bottom offset-y v-if="item.dropdown == true" light>
-              <v-btn v-if="item.dropdown == true" slot="activator" class="navBtn" flat>
-                {{item.title}}
-                <v-icon v-for="i in item.subItems" :key="i.id" v-html="i.icon"></v-icon>
+              >{{ item.title }}</v-btn
+            >
+            <v-menu
+              open-on-hover
+              bottom
+              offset-y
+              v-if="item.dropdown == true"
+              light
+            >
+              <v-btn
+                v-if="item.dropdown == true"
+                slot="activator"
+                class="navBtn"
+                flat
+              >
+                {{ item.title }}
+                <v-icon
+                  v-for="i in item.subItems"
+                  :key="i.id"
+                  v-html="i.icon"
+                ></v-icon>
               </v-btn>
               <v-list>
                 <v-list-tile
                   v-for="(item, index) in item.subItems"
                   :to="item.path"
                   :key="index"
-                  @click
                 >
                   <v-list-tile-title>{{ item.title }}</v-list-tile-title>
                 </v-list-tile>
@@ -203,5 +243,3 @@ a.v-list__tile.v-list__tile--link.theme--dark.primary--text {
   border-bottom: 1px solid black;
 }
 </style>
-
-

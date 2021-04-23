@@ -1,8 +1,10 @@
 const express = require('express')
 const consola = require('consola')
+const cors = require('cors')
 const { Nuxt, Builder } = require('nuxt')
 
 const app = express()
+app.use(cors())
 
 // Import and Set Nuxt.js options
 let config = require('../nuxt.config.js')

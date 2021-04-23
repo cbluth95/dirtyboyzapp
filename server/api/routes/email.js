@@ -13,13 +13,15 @@ router.post('/send', (req, res) => {
     reqArr.push(item)
   })
 
-  if (reqArr.length == 6) {
+  if (reqArr.length == 8) {
     valid = true
   }
 
   if (valid) {
     const email = {
       name: req.body.name,
+      mail: req.body.mail,
+      phone: req.body.phone,
       address: req.body.address,
       city: req.body.city,
       state: req.body.state,
@@ -31,7 +33,7 @@ router.post('/send', (req, res) => {
       secure: false, // use SSL,
       auth: {
         user: 'dboyzsanitation@gmail.com',
-        pass: 'Midnight1995!'
+        pass: 'qrwganrylcjmvvxf'
       }
     })
     let ContactMailOptions = {
@@ -46,6 +48,8 @@ router.post('/send', (req, res) => {
       <br>
       <h2 style="color: red;">Sender Info:</h2>
         <p>Name: ${email.name}</p>
+        <p>Email: ${email.mail}</p>
+        <p>Phone: ${email.phone}</p>
         <p>Address: ${email.address}</p>
         <p>City: ${email.city}</p>
         <p>State: ${email.state}</p>
