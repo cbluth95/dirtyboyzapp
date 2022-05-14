@@ -10,9 +10,15 @@
                   <h1
                     style="font-size: 6em;color: #ffc200;line-height: 1;"
                     class="pTitle"
-                  >We Want Your Trash!</h1>
-                  <v-btn class="header-btn" outline large to="/contact">Get a free estimate</v-btn>
-                  <v-btn class="header-btn" outline large to="/services">Our Services</v-btn>
+                  >
+                    We Want Your Trash!
+                  </h1>
+                  <v-btn class="header-btn" outline large to="/contact"
+                    >Get a free estimate</v-btn
+                  >
+                  <v-btn class="header-btn" outline large to="/services"
+                    >Our Services</v-btn
+                  >
                 </v-flex>
               </v-layout>
             </v-container>
@@ -127,4 +133,3 @@ page-enter-active,
   transform-origin: 50% 50%;
 }
 </style>
-

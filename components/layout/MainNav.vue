@@ -64,8 +64,9 @@
       </v-list>
     </v-navigation-drawer>
     <v-toolbar
+      extended
       color="#34221a"
-      height="100"
+      height="80"
       app
       :clipped-left="clipped"
       class="main-nav"
@@ -74,17 +75,20 @@
         class="hidden-lg-and-up"
         @click.stop="drawer = !drawer"
       ></v-toolbar-side-icon>
-      <v-container fill-height fluid>
-        <v-layout row align-center justify-center text-xs-center>
-          <router-link to="/">
-            <img
-              src="../../assets/logo1.png"
-              class="animated rubberBand"
-              style="height: 80px; margin-left: -36px;"
-              alt
-            />
-          </router-link>
+      <template v-slot:extension>
+        <v-layout row align-center justify-center>
+          <v-toolbar-title class="white--text">
+            <router-link to="/">
+              <img
+                src="../../assets/logo1.png"
+                class="animated rubberBand"
+                style="height: 70px;margin-bottom: 40px;"
+                alt
+              /> </router-link
+          ></v-toolbar-title>
         </v-layout>
+      </template>
+      <v-container fill-height fluid>
         <v-layout justify-center class="hidden-md-and-down">
           <v-toolbar-items v-for="(item, i) in navItems" :key="i">
             <v-btn
@@ -128,7 +132,10 @@
           </v-toolbar-items>
         </v-layout>
       </v-container>
-      <v-spacer class="hidden-lg-and-up"></v-spacer>
+      <v-spacer class="hidden-lg-and-up"></v-spacer
+      ><v-btn href="tel:307-321-3874" light color="#ffc200">
+        <v-icon light>phone</v-icon>
+      </v-btn>
 
       <!-- <v-spacer></v-spacer> -->
       <!-- <v-toolbar-items class="hidden-md-and-down" v-for="(item, i) in navItems" :key="i">

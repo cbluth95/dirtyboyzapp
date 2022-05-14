@@ -18,7 +18,28 @@
                       <v-layout align-center>
                         <v-flex xs12 pa-2 text-xs-center>
                           <div class="subheading font-weight-light">
-                            {{ numYears }}
+                            {{ compText }}
+                          </div>
+                        </v-flex>
+                      </v-layout>
+                    </v-container>
+                  </v-card>
+                  <v-card light>
+                    <div class="pTitle text-xs-center mt-2 mb-2">Location</div>
+                    <v-divider></v-divider>
+                    <v-container fill-height>
+                      <v-layout align-center>
+                        <v-flex xs12 pa-2 text-xs-center>
+                          <div class="subheading font-weight-light">
+                            <iframe
+                              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2974.8090419289397!2d-107.24776828425085!3d41.78932887894307!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x875d017fa8d26015%3A0x556511f79a11a03b!2sDirty%20Boyz%20Sanitation%20Service!5e0!3m2!1sen!2sus!4v1652492709468!5m2!1sen!2sus"
+                              width="100%"
+                              height="400"
+                              style="border:0;max-width: 800px;"
+                              allowfullscreen=""
+                              loading="lazy"
+                              referrerpolicy="no-referrer-when-downgrade"
+                            ></iframe>
                           </div>
                         </v-flex>
                       </v-layout>
@@ -43,7 +64,7 @@ export default {
     return {}
   },
   computed: {
-    numYears() {
+    compText() {
       var curYear = moment().format('YYYY')
       var year = curYear - 2008
       console.log(curYear)
