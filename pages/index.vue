@@ -1,27 +1,22 @@
 <template>
-  <v-container fluid>
+  <div class="home-page">
     <main>
-      <section>
+      <section class="hero-section">
         <v-img cover :src="background" :height="window.height">
-          <div class="fill-height overlay-gradient">
-            <v-container bg fill-height grid-list-md text-xs-center>
-              <v-layout row wrap align-center justify-center>
-                <v-flex xs12 text-xs-center>
-                  <h1
-                    style="font-size: 6em;color: #ffc200;line-height: 1;"
-                    class="pTitle"
-                  >
-                    We Want Your Trash!
-                  </h1>
-                  <v-btn class="header-btn" outline large to="/contact"
-                    >Get a free estimate</v-btn
-                  >
-                  <v-btn class="header-btn" outline large to="/services"
-                    >Our Services</v-btn
-                  >
-                </v-flex>
-              </v-layout>
-            </v-container>
+          <div class="fill-height hero-overlay">
+            <div class="hero-content">
+              <h1 class="hero-title">
+                We Want Your Trash!
+              </h1>
+              <div class="hero-buttons">
+                <v-btn class="hero-btn hero-btn-primary" large to="/contact">
+                  Get a free estimate
+                </v-btn>
+                <v-btn class="hero-btn hero-btn-secondary" large to="/services">
+                  Our Services
+                </v-btn>
+              </div>
+            </div>
           </div>
         </v-img>
         <!-- <v-parallax :src="background" :height="window.height">
@@ -43,7 +38,7 @@
       <shared-service-promo />
       <shared-contact-us />
     </main>
-  </v-container>
+  </div>
 </template>
 
 <script>

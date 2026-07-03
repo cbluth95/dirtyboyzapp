@@ -54,7 +54,11 @@ module.exports = {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['@/plugins/index'],
+  plugins: [
+    '@/plugins/index',
+    { src: '@/plugins/particles', mode: 'client' },
+    { src: '@/plugins/firebase', mode: 'client' }
+  ],
 
   /*
    ** Nuxt.js modules
