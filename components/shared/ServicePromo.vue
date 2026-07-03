@@ -3,7 +3,7 @@
     <v-container fluid>
       <v-layout>
         <v-flex xs12>
-          <v-card light>
+          <v-card>
             <v-img cover :src="truckImg" max-height="800" width="100%">
               <div class="fill-height overlay-gradient-red">
                 <v-container fill-height>
@@ -28,7 +28,7 @@
                           </v-tab>
                         </v-tabs>
                       </v-flex>
-                      <v-card color="grey lighten-2" height="550">
+          <v-card class="promo-glass-card" height="550">
                         <v-container fill-height>
                           <v-layout row wrap align-center>
                             <v-flex xs12>

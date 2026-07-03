@@ -1,17 +1,9 @@
 <template>
   <div id="nav">
-    <!-- <v-toolbar light app height="40px" class="elevation-0 top-bar">
-      <v-spacer></v-spacer>
-      <v-btn flat icon href="mailto:contact@themovies3.com">
-        <v-icon>mail</v-icon>
-      </v-btn>
-      <v-btn flat icon href="tel:307-324-6624">
-        <v-icon color="black">phone</v-icon>
-      </v-btn>
-    </v-toolbar>-->
+    <!-- Mobile Drawer -->
     <v-navigation-drawer
       class="hidden-lg-and-up drawerBack"
-      style="background-color: #34221a;border-right: 1px solid #ffc200;"
+      style="background-color: #34221a;"
       persistent
       :mini-variant="miniVariant"
       :clipped="clipped"
@@ -20,65 +12,75 @@
       fixed
       app
     >
+      <!-- Drawer logo header -->
+      <div class="drawer-header">
+        <img src="../../assets/logo1.png" class="drawer-logo" alt="Dirty Boyz Sanitation" />
+        <div class="drawer-brand">Dirty Boyz Sanitation</div>
+      </div>
+      <v-divider style="border-color: rgba(255,194,0,0.3);"></v-divider>
       <v-list>
         <v-list-tile
           value="true"
           v-for="(item, i) in navItems"
           :key="i"
           :to="item.path"
+          @click="drawer = false"
         >
-          <v-list-tile-action>
-            <v-icon color="black" v-html="item.icon"></v-icon>
-          </v-list-tile-action>
           <v-list-tile-content class="link-title">
-            <v-list-tile-title v-if="item.dropdown == null">{{
-              item.title
-            }}</v-list-tile-title>
-            <v-menu
-              open-on-hover
-              bottom
-              offset-y
-              v-if="item.dropdown == true"
-              light
-            >
-              <v-list-tile-title slot="activator">
-                {{ item.title }}
-                <v-icon
-                  v-for="i in item.subItems"
-                  :key="i.id"
-                  v-html="i.icon"
-                ></v-icon>
-              </v-list-tile-title>
-              <v-list>
-                <v-list-tile
-                  v-for="(item, index) in item.subItems"
-                  :to="item.path"
-                  :key="index"
-                >
-                  <v-list-tile-title>{{ item.title }}</v-list-tile-title>
-                </v-list-tile>
-              </v-list>
-            </v-menu>
+            <v-list-tile-title>{{ item.title }}</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
+
     <v-toolbar
       color="transparent"
-      height="70"
+      height="80"
       app
       flat
       :clipped-left="clipped"
-      class="main-nav glass-nav"
+      :class="['main-nav', 'glass-nav', { 'nav-hidden': navHidden }]"
     >
-      <v-toolbar-side-icon
-        class="hidden-lg-and-up"
-        color="#ffc200"
+      <!-- Mobile: hamburger -->
+      <v-btn
+        icon
+        flat
+        class="hidden-lg-and-up hamburger-btn"
         @click.stop="drawer = !drawer"
-      ></v-toolbar-side-icon>
-      
-      <!-- Logo -->
-      <v-toolbar-title class="logo-container">
+      >
+        <v-icon>menu</v-icon>
+      </v-btn>
+
+      <!-- Desktop LEFT nav: all 4 items -->
+      <v-toolbar-items class="hidden-md-and-down nav-items-container">
+        <v-btn
+          v-for="(item, i) in navItems"
+          :key="'l'+i"
+          class="navBtn text-capitalize"
+          :ripple="false"
+          flat
+          :to="item.path"
+          :exact="item.path === '/'"
+        >{{ item.title }}</v-btn>
+      </v-toolbar-items>
+
+      <v-spacer></v-spacer>
+
+      <!-- CENTER LOGO MEDALLION (desktop only, absolutely centered) -->
+      <div class="center-logo-wrap hidden-md-and-down">
+        <router-link to="/" class="medallion-link">
+          <div class="logo-medallion">
+            <img
+              src="../../assets/logo1.png"
+              class="nav-logo-center"
+              alt="Dirty Boyz Sanitation"
+            />
+          </div>
+        </router-link>
+      </div>
+
+      <!-- Mobile logo — absolutely centered -->
+      <div class="mobile-logo-wrap hidden-lg-and-up">
         <router-link to="/">
           <img
             src="../../assets/logo1.png"
@@ -86,95 +88,36 @@
             alt="Dirty Boyz Sanitation"
           />
         </router-link>
-      </v-toolbar-title>
+      </div>
 
       <v-spacer></v-spacer>
 
-      <!-- Desktop Nav Items -->
-      <v-toolbar-items class="hidden-md-and-down nav-items-container">
-        <v-btn
-          v-for="(item, i) in navItems"
-          :key="i"
-          v-if="item.dropdown == null"
-          class="navBtn text-capitalize"
-          :ripple="{ class: 'primary--text' }"
-          flat
-          :to="item.path"
-        >
-          {{ item.title }}
-        </v-btn>
-        <v-menu
-          v-if="item.dropdown == true"
-          v-for="(item, i) in navItems"
-          :key="i"
-          open-on-hover
-          bottom
-          offset-y
-          light
-        >
-          <v-btn
-            slot="activator"
-            class="navBtn"
-            flat
-          >
-            {{ item.title }}
-            <v-icon
-              v-for="i in item.subItems"
-              :key="i.id"
-              v-html="i.icon"
-            ></v-icon>
-          </v-btn>
-          <v-list class="glass-menu">
-            <v-list-tile
-              v-for="(item, index) in item.subItems"
-              :to="item.path"
-              :key="index"
-            >
-              <v-list-tile-title>{{ item.title }}</v-list-tile-title>
-            </v-list-tile>
-          </v-list>
-        </v-menu>
-      </v-toolbar-items>
+      <!-- Dark Mode Toggle -->
+      <v-btn icon flat class="dark-toggle-btn" @click="$emit('toggle-dark')" :title="isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'">
+        <v-icon color="#ffc200">{{ isDark ? 'brightness_7' : 'brightness_4' }}</v-icon>
+      </v-btn>
 
-      <v-spacer class="hidden-lg-and-up"></v-spacer>
-      
       <!-- Call Button -->
-      <v-btn 
-        href="tel:307-321-3874" 
+      <v-btn
+        href="tel:307-321-3874"
         class="call-btn elevation-6"
         color="#ffc200"
       >
         <v-icon left color="#34221a">phone</v-icon>
         <span class="hidden-sm-and-down">Call Us</span>
       </v-btn>
-
-      <!-- <v-spacer></v-spacer> -->
-      <!-- <v-toolbar-items class="hidden-md-and-down" v-for="(item, i) in navItems" :key="i">
-        <v-btn
-          v-if="item.dropdown == null"
-          class="navBtn"
-          :ripple="{ class: 'primary--text' }"
-          flat
-          :to="item.path"
-        >{{item.title}}</v-btn>
-        <v-menu open-on-hover bottom offset-y v-if="item.dropdown == true" light>
-          <v-btn v-if="item.dropdown == true" slot="activator" class="navBtn" flat>
-            {{item.title}}
-            <v-icon v-for="i in item.subItems" :key="i.id" v-html="i.icon"></v-icon>
-          </v-btn>
-          <v-list>
-            <v-list-tile v-for="(item, index) in item.subItems" :to="item.path" :key="index" @click>
-              <v-list-tile-title>{{ item.title }}</v-list-tile-title>
-            </v-list-tile>
-          </v-list>
-        </v-menu>
-      </v-toolbar-items>-->
     </v-toolbar>
   </div>
 </template>
 
 <script>
 export default {
+  props: {
+    isDark: {
+      type: Boolean,
+      default: false
+    }
+  },
   data() {
     return {
       clipped: false,
@@ -183,73 +126,184 @@ export default {
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: 'Dirty Boyz Sanitation'
+      title: 'Dirty Boyz Sanitation',
+      navHidden: false,
+      lastScrollY: 0
+    }
+  },
+  mounted() {
+    if (process.client) {
+      window.addEventListener('scroll', this.handleScroll, { passive: true })
+    }
+  },
+  beforeDestroy() {
+    if (process.client) {
+      window.removeEventListener('scroll', this.handleScroll)
     }
   },
   computed: {
     navItems() {
-      const items = [
-        {
-          icon: 'home',
-          title: 'Home',
-          path: '/'
-        },
-        {
-          icon: '',
-          title: 'Services',
-          path: '/services'
-        },
-        // {
-        //   icon: '',
-        //   title: 'Gallery',
-        //   path: '/gallery'
-        // },
-        {
-          icon: '',
-          title: 'About',
-          path: '/about'
-        },
-        {
-          icon: '',
-          title: 'Contact',
-          path: '/contact'
-        }
+      return [
+        { title: 'Home', path: '/' },
+        { title: 'Services', path: '/services' },
+        { title: 'About', path: '/about' },
+        { title: 'Contact', path: '/contact' }
       ]
-      return items
+    }
+  },
+  watch: {
+    $route() {
+      this.navHidden = false
+      this.lastScrollY = 0
+    }
+  },
+  methods: {
+    handleScroll() {
+      const y = window.scrollY
+      if (y < 80) {
+        this.navHidden = false
+      } else if (y > this.lastScrollY + 6) {
+        this.navHidden = true
+      } else if (y < this.lastScrollY - 6) {
+        this.navHidden = false
+      }
+      this.lastScrollY = y
     }
   }
 }
 </script>
 
 <style scoped>
+/* Drawer border only when open — when closed it translates offscreen by its
+   width, which would leave a 1px border line visible at the screen edge */
+.drawerBack {
+  border-right: 1px solid #ffc200;
+}
+
+.drawerBack.v-navigation-drawer--close {
+  border-right: none;
+  visibility: hidden;
+  /* wait for the slide-out animation before hiding */
+  transition: visibility 0s 0.3s, transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 /* Glassmorphism Navigation */
 .glass-nav {
-  background: rgba(52, 34, 26, 0.85) !important;
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  background: #34221a !important;
   border-bottom: 1px solid rgba(255, 194, 0, 0.2) !important;
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-  transition: all 0.3s ease;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  overflow: visible !important;
+  will-change: transform;
 }
 
-.glass-nav:hover {
-  background: rgba(52, 34, 26, 0.92) !important;
-  border-bottom: 1px solid rgba(255, 194, 0, 0.4) !important;
+.glass-nav.nav-hidden {
+  transform: translateY(calc(-100% - 60px)) !important;
 }
 
-/* Logo Styling */
-.logo-container {
-  padding: 8px 0;
+/* Mobile logo — absolutely centered in toolbar */
+.mobile-logo-wrap {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+}
+
+.mobile-logo-wrap a {
+  display: block;
+  text-decoration: none;
+}
+
+/* Hamburger button */
+.hamburger-btn {
+  color: #ffc200 !important;
+  margin-right: 4px;
+}
+
+.hamburger-btn .v-icon {
+  color: #ffc200 !important;
+  font-size: 28px !important;
+}
+
+/* Drawer header */
+.drawer-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 16px 16px;
+  gap: 8px;
+}
+
+.drawer-logo {
+  height: 80px;
+  width: 80px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4));
+}
+
+.drawer-brand {
+  font-family: 'Baloo Bhai', cursive;
+  font-size: 1rem;
+  color: rgba(255,255,255,0.85);
+  text-align: center;
+  letter-spacing: 0.5px;
 }
 
 .nav-logo {
-  height: 55px;
+  height: 52px;
   transition: transform 0.3s ease;
   filter: drop-shadow(2px 2px 8px rgba(0, 0, 0, 0.3));
 }
 
 .nav-logo:hover {
   transform: scale(1.05);
+}
+
+/* Center medallion — desktop */
+.center-logo-wrap {
+  position: absolute;
+  left: 50%;
+  top: 5px;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+.medallion-link {
+  display: block;
+  text-decoration: none;
+}
+
+.logo-medallion {
+  width: 114px;
+  height: 114px;
+  border-radius: 50%;
+  background: rgba(52, 34, 26, 0.96);
+  border: 2px solid rgba(255, 194, 0, 0.5);
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.45),
+    0 0 0 4px rgba(255, 194, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.logo-medallion:hover {
+  border-color: rgba(255, 194, 0, 0.9);
+  box-shadow:
+    0 6px 32px rgba(0, 0, 0, 0.5),
+    0 0 0 4px rgba(255, 194, 0, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  transform: scale(1.06);
+}
+
+.nav-logo-center {
+  height: 92px;
+  width: 92px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5));
 }
 
 /* Navigation Items */
@@ -267,42 +321,49 @@ export default {
   color: #ffffff !important;
   letter-spacing: 0.5px;
   position: relative;
-  transition: all 0.3s ease !important;
+  transition: color 0.3s ease !important;
   margin: 0 4px;
+  background: transparent !important;
+  border-radius: 0 !important;
+  box-shadow: inset 0 -3px 0 0 transparent !important;
 }
 
-.navBtn::before {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #ffc200, #ffdd00);
-  transform: translateX(-50%);
-  transition: width 0.3s ease;
-  border-radius: 2px 2px 0 0;
+/* Kill Vuetify's built-in hover/active overlay + ripple completely */
+.navBtn::before,
+.navBtn::after {
+  display: none !important;
+}
+
+.navBtn >>> .v-ripple__container {
+  display: none !important;
+}
+
+.navBtn:hover,
+.navBtn:focus,
+.navBtn:active {
+  background: transparent !important;
 }
 
 .navBtn:hover {
-  background: rgba(255, 194, 0, 0.1) !important;
   color: #ffc200 !important;
-  transform: translateY(-2px);
 }
 
-.navBtn:hover::before {
-  width: 80%;
+/* Keyboard focus: gold underline instead of outline box */
+.navBtn:focus,
+.navBtn:focus-visible {
+  outline: none !important;
+}
+
+.navBtn:focus-visible {
+  color: #ffc200 !important;
+  box-shadow: inset 0 -4px 0 0 #ffc200 !important;
 }
 
 a.navBtn.v-btn--active {
-  background: rgba(255, 194, 0, 0.15) !important;
+  background: transparent !important;
   color: #ffc200 !important;
   font-weight: 600 !important;
-}
-
-a.navBtn.v-btn--active::before {
-  width: 100%;
-  height: 4px;
+  box-shadow: inset 0 -4px 0 0 #ffc200 !important;
 }
 
 /* Call Button */
@@ -350,6 +411,19 @@ a.navBtn.v-btn--active::before {
   backdrop-filter: blur(20px);
 }
 
+/* Hamburger Menu Icon */
+.v-toolbar__side-icon {
+  min-width: 48px !important;
+  width: 48px !important;
+  height: 48px !important;
+  margin-right: 8px !important;
+}
+
+.v-toolbar__side-icon .v-icon {
+  font-size: 28px !important;
+  color: #ffc200 !important;
+}
+
 .link-title {
   font-size: 1.2em;
   font-family: 'Baloo Bhai', cursive;
@@ -379,11 +453,11 @@ a.v-list__tile.v-list__tile--link.theme--dark:hover {
 /* Responsive */
 @media (max-width: 960px) {
   .nav-logo {
-    height: 45px;
+    height: 50px;
   }
-  
+
   .glass-nav {
-    height: 64px !important;
+    height: 72px !important;
   }
 }
 </style>

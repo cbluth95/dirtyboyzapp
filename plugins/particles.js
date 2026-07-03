@@ -1,4 +1,2 @@
-import Vue from 'vue'
-import VueParticles from 'vue-particles'
-
-Vue.use(VueParticles)
+// Custom canvas-based particle system - no external dependency needed
+// Particle effects are handled by components/shared/ParticleEffect.vue

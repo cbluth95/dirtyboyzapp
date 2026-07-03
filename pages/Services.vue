@@ -1,69 +1,70 @@
 <template>
-  <section>
-    <v-container>
-      <v-layout row wrap justify-center text-xs-center>
-        <v-flex xs12 mt-2 mb-2>
-          <p class="pTitle black--text">Residential Services</p>
-          <v-divider class="black"></v-divider>
-        </v-flex>
-        <v-flex xs12 mt-2>
-          <v-flex
-            xs12
-            md6
-            style="margin-left: auto;margin-right:auto;padding:4px"
-          >
-            <v-card height="auto" color="#34221a">
-              <p class="headline" style="padding:6px">
-                Dirty Boyz Sanitation Service, inc offers valet service as well
-                as alley pickup. By City Ordinance all ALL trash must be bagged.
-                Bags used for this purpose shall be suitable for storage and
-                disposal of sanitary waste without bursting or ripping during
-                transportation and loading into refuse containers. Bags used for
-                this purpose must be resistant to weakening by moisture and
-                weather conditions. Bags must be securely tied prior to
-                placement in the container. We do not require trash rollouts to
-                be placed curbside. We are proud to provide top quality
-                residential garbage removal & recycling services. Please call
-                (307) 321-3874 to start residential trash service for your home.
-              </p>
-            </v-card>
-          </v-flex>
-        </v-flex>
-        <v-flex mt-5 mb-2>
-          <p class="pTitle black--text">Commercial Services</p>
-          <v-divider class="black"></v-divider>
-        </v-flex>
-        <v-flex xs12 mt-2>
-          <v-flex
-            xs12
-            md6
-            style="margin-left: auto;margin-right:auto;padding:4px"
-          >
-            <v-card height="auto" color="#34221a">
-              <p class="headline" style="padding:6px">
-                Dirty Boyz Sanitation proudly offers reliable and affordable
-                commercial garbage collection and we work to meet our customer’s
-                needs. By City Ordinance all ALL trash must be bagged. Bags used
-                for this purpose shall be suitable for storage and disposal of
-                sanitary waste without bursting or ripping during transportation
-                and loading into refuse containers. Bags used for this purpose
-                must be resistant to weakening by moisture and weather
-                conditions. Bags must be securely tied prior to placement in the
-                container. Our wide assortment of receptacles ensure we have the
-                right options to fit the unique trash removal demands of your
-                business. Please call (307) 321-3874 and we will work with you
-                to find the best solution to meet your needs.
-              </p>
-            </v-card>
-          </v-flex>
-        </v-flex>
-      </v-layout>
+  <div class="page-wrapper">
+    <div class="page-header">
+      <h1 class="page-header-title">Our Services</h1>
+      <p class="page-header-sub">Professional waste removal for Rawlins, WY &mdash; (307) 321-3874</p>
+    </div>
 
-      <v-layout row wrap>
-        <v-flex xs12>
-          <shared-acceptable-trash />
-        </v-flex>
-      </v-layout>
-    </v-container>
-  </section>
+    <div class="page-content">
+      <section class="glass-section">
+        <div class="glass-section-header">
+          <span class="section-accent"></span>
+          <h2>Residential Services</h2>
+        </div>
+        <div class="liquid-card">
+          <p class="service-body">
+            Dirty Boyz Sanitation Service, Inc. offers valet service as well as alley pickup. By City Ordinance,
+            ALL trash must be bagged. Bags must be suitable for storage and disposal of sanitary waste, resistant
+            to weakening by moisture and weather conditions, and securely tied prior to placement. We do not
+            require trash rollouts to be placed curbside. We are proud to provide top quality residential garbage
+            removal &amp; recycling services.
+          </p>
+          <v-btn color="#ffc200" href="tel:307-321-3874" round class="service-cta">
+            <v-icon left color="#34221a">phone</v-icon>
+            <span style="color:#34221a;font-weight:600;">Call to Start Service</span>
+          </v-btn>
+        </div>
+      </section>
+
+      <section class="glass-section">
+        <div class="glass-section-header">
+          <span class="section-accent"></span>
+          <h2>Commercial Services</h2>
+        </div>
+        <div class="liquid-card">
+          <p class="service-body">
+            Dirty Boyz Sanitation proudly offers reliable and affordable commercial garbage collection. We work
+            to meet each customer's unique needs. Our wide assortment of receptacles ensures we have the right
+            options to fit the unique trash removal demands of your business.
+          </p>
+          <v-btn color="#ffc200" href="tel:307-321-3874" round class="service-cta">
+            <v-icon left color="#34221a">phone</v-icon>
+            <span style="color:#34221a;font-weight:600;">Get a Custom Quote</span>
+          </v-btn>
+        </div>
+      </section>
+
+      <section class="glass-section">
+        <div class="glass-section-header">
+          <span class="section-accent"></span>
+          <h2>Acceptable &amp; Unacceptable Items</h2>
+        </div>
+        <shared-acceptable-trash />
+      </section>
+    </div>
+  </div>
 </template>
+
+<style scoped>
+.service-body {
+  font-size: 1.04rem;
+  line-height: 1.8;
+  color: var(--text-primary);
+  margin-bottom: 20px;
+}
+.service-cta {
+  font-family: 'Baloo Bhai', cursive !important;
+  font-size: 1rem !important;
+  text-transform: none !important;
+}
+</style>

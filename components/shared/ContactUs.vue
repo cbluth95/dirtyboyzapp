@@ -3,7 +3,7 @@
     <v-container fluid>
       <v-layout>
         <v-flex xs12>
-          <v-card color="grey lighten-2">
+          <v-card class="contactus-outer-card">
             <v-container fill-height>
               <v-layout row wrap align-center justify-center>
                 <v-flex xs12 sm6 pa-2>
@@ -11,8 +11,8 @@
                 </v-flex>
 
                 <v-flex xs12 sm6 pa-2>
-                  <v-card light>
-                    <div class="pTitle text-xs-center mt-2 mb-2">About Us</div>
+                  <v-card>
+                    <div class="contact-form-title pTitle text-xs-center mt-2 mb-2">About Us</div>
                     <v-divider></v-divider>
                     <v-container fill-height>
                       <v-layout align-center>
@@ -24,8 +24,8 @@
                       </v-layout>
                     </v-container>
                   </v-card>
-                  <v-card light>
-                    <div class="pTitle text-xs-center mt-2 mb-2">Location</div>
+                  <v-card>
+                    <div class="contact-form-title pTitle text-xs-center mt-2 mb-2">Location</div>
                     <v-divider></v-divider>
                     <v-container fill-height>
                       <v-layout align-center>

@@ -59,6 +59,10 @@ typings/
 # dotenv environment variables file
 .env
 
+# Firebase service account keys — NEVER commit these
+*-adminsdk-*.json
+firebase-service-account.json
+
 # parcel-bundler cache (https://parceljs.org/)
 .cache
 

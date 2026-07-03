@@ -1,26 +1,29 @@
 <template>
-  <v-app dark style="background-color: white;">
+  <v-app :dark="isDark" :class="['app-root', { 'dark-mode': isDark }]">
     <!-- Particle Effect Layer -->
     <shared-particle-effect />
     
-    <layout-main-nav/>
+    <layout-main-nav :is-dark="isDark" @toggle-dark="toggleDark" />
     <v-content v-show="loaded" class="animated fadeIn" style="padding-top: 0;">
       <nuxt/>
     </v-content>
 
     <v-footer height="auto">
       <v-card class="flex" flat tile color="accent">
-        <v-card-actions class="grey darken-3 justify-center">
-          <v-layout row wrap justify-center text-xs-center>
-            <v-flex xs12>
-              &copy; —
-              <strong>Dirty Boyz Sanitation</strong>
-            </v-flex>
-            <v-flex xs12>
-              <strong>Created By</strong>
-              <v-img :src="wyopcLogo" width="150" style="margin-left:auto;margin-right:auto;"></v-img>
-            </v-flex>
-          </v-layout>
+        <v-card-actions class="grey darken-3" style="padding: 10px 24px;">
+          <span style="flex:1;text-align:left;font-size:0.85rem;">
+            &copy; {{ currentYear }} &mdash; <strong>Dirty Boyz Sanitation</strong>
+          </span>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <span style="font-size:0.8rem;opacity:0.7;">Created By</span>
+            <v-img
+              :src="wyopcLogo"
+              width="110"
+              height="40"
+              contain
+              style="flex-shrink:0;"
+            ></v-img>
+          </div>
         </v-card-actions>
       </v-card>
     </v-footer>
@@ -36,6 +39,7 @@
       right
       color="#ffc200"
       fixed
+      style="bottom: 80px !important; right: 16px !important;"
       @click="scrollTop"
     >
       <v-icon dark>keyboard_arrow_up</v-icon>
@@ -47,9 +51,10 @@
 export default {
   data() {
     return {
-      wyopcLogo: require('@/assets/wyopclogo.png'),
+      wyopcLogo: require('@/assets/revamplogo.png'),
       loaded: false,
       isScrolled: false,
+      isDark: true,
       clipped: false,
       drawer: false,
       fixed: false,
@@ -71,16 +76,29 @@ export default {
       title: 'Vuetify.js'
     }
   },
+  computed: {
+    currentYear() {
+      return new Date().getFullYear()
+    }
+  },
   beforeMount() {
     // eventually fix this image load time problem
     this.loadApp()
     if (process.browser) {
+      const stored = localStorage.getItem('darkMode')
+      this.isDark = stored === null ? true : stored === 'true'
       window.onscroll = this.handleScroll
     }
   },
   methods: {
     loadApp() {
       this.loaded = !this.loaded
+    },
+    toggleDark() {
+      this.isDark = !this.isDark
+      if (process.browser) {
+        localStorage.setItem('darkMode', String(this.isDark))
+      }
     },
     scrollTop() {
       window.scrollTo(0, 0)
@@ -104,13 +122,6 @@ export default {
 <style>
 html {
   scroll-behavior: smooth;
-}
-.container {
-  padding: 0px !important;
-}
-.pTitle {
-  font-size: 2.5em;
-  font-family: 'Baloo Bhai', cursive;
 }
 </style>
 

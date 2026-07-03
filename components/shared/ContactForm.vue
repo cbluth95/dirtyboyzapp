@@ -1,131 +1,166 @@
 <template>
-  <section>
-    <v-container fluid>
-      <v-layout row wrap justify-center>
-        <v-flex xs12 mt-2>
-          <v-card light ref="form">
-            <div
-              style="background-color: #e0e0e0;"
-              class="pTitle text-xs-center"
-            >
-              Contact Us
-            </div>
-            <v-divider></v-divider>
-            <v-card-text>
-              <v-text-field
-                ref="name"
-                v-model="name"
-                :rules="[() => !!name || 'This field is required']"
-                :error-messages="errorMessages"
-                label="Full Name"
-                placeholder="John Doe"
-                required
-              ></v-text-field>
-              <v-text-field
-                ref="mail"
-                v-model="mail"
-                :rules="[() => !!mail || 'This field is required']"
-                :error-messages="errorMessages"
-                label="Email"
-                placeholder="JohnDoe@email.com"
-                required
-              ></v-text-field>
-              <v-text-field
-                ref="phone"
-                v-model="phone"
-                :rules="[() => !!phone || 'This field is required']"
-                :error-messages="errorMessages"
-                label="Phone"
-                placeholder="(111) 222-3333"
-                required
-              ></v-text-field>
-              <v-text-field
-                ref="address"
-                v-model="address"
-                :rules="[
-                  () => !!address || 'This field is required',
-                  () =>
-                    (!!address && address.length <= 25) ||
-                    'Address must be less than 25 characters',
-                  addressCheck
-                ]"
-                label="Address Line"
-                placeholder="Snowy Rock Pl"
-                counter="25"
-                required
-              ></v-text-field>
-              <v-text-field
-                ref="city"
-                v-model="city"
-                :rules="[
-                  () => !!city || 'This field is required',
-                  addressCheck
-                ]"
-                label="City"
-                placeholder="Rawlins"
-                required
-              ></v-text-field>
-              <v-text-field
-                ref="state"
-                v-model="state"
-                :rules="[() => !!state || 'This field is required']"
-                label="State/Province/Region"
-                required
-                placeholder="WY"
-              ></v-text-field>
-              <v-text-field
-                ref="zip"
-                v-model="zip"
-                :rules="[() => !!zip || 'This field is required']"
-                label="ZIP / Postal Code"
-                required
-                placeholder="82301"
-              ></v-text-field>
-              <v-text-field
-                ref="msg"
-                v-model="msg"
-                name="message"
-                label="message"
-                id="msg"
-                :counter="150"
-                :rules="msgRules"
-                required
-              ></v-text-field>
-            </v-card-text>
-            <v-divider class="mt-5"></v-divider>
-            <!-- Form MSG -->
-            <v-snackbar
-              v-model="alert"
-              :color="sColor === 'success' ? '#4caf50' : '#f44336'"
-              absolute
-              :bottom="true"
-              :multi-line="true"
-              :timeout="5000"
-            >
-              {{ sText }}
-              <v-btn color="white" flat @click="alert = false">Close</v-btn>
-            </v-snackbar>
-            <!-- End Form MSG -->
-            <v-card-actions>
-              <!-- <v-btn flat>Cancel</v-btn> -->
-              <v-spacer></v-spacer>
-              <v-slide-x-reverse-transition>
-                <v-tooltip v-if="formHasErrors" left>
-                  <template v-slot:activator="{ on }">
-                    <v-btn icon class="my-0" @click="resetForm" v-on="on">
-                      <v-icon>refresh</v-icon>
-                    </v-btn>
-                  </template>
-                  <span>Refresh form</span>
-                </v-tooltip>
-              </v-slide-x-reverse-transition>
-              <v-btn color="primary" flat @click="submit">Send</v-btn>
-            </v-card-actions>
-          </v-card>
+  <div class="cform">
+    <!-- Title bar -->
+    <div class="cform-title contact-form-title">
+      Contact Us
+    </div>
+
+    <!-- Fields -->
+    <div class="cform-body">
+      <v-text-field
+        ref="name"
+        v-model="name"
+        :rules="[() => !!name || 'This field is required']"
+        :error-messages="errorMessages"
+        label="Full Name"
+        placeholder="John Doe"
+        solo
+        hide-details
+        class="cform-field"
+        required
+      ></v-text-field>
+
+      <v-text-field
+        ref="mail"
+        v-model="mail"
+        :rules="[() => !!mail || 'This field is required']"
+        :error-messages="errorMessages"
+        label="Email"
+        placeholder="JohnDoe@email.com"
+        solo
+        hide-details
+        class="cform-field"
+        required
+      ></v-text-field>
+
+      <v-text-field
+        ref="phone"
+        v-model="phone"
+        :rules="[() => !!phone || 'This field is required']"
+        :error-messages="errorMessages"
+        label="Phone"
+        placeholder="(111) 222-3333"
+        solo
+        hide-details
+        class="cform-field"
+        required
+      ></v-text-field>
+
+      <v-layout row wrap class="cform-row">
+        <v-flex xs8 class="pr-2">
+          <v-text-field
+            ref="address"
+            v-model="address"
+            :rules="[
+              () => !!address || 'This field is required',
+              () => (!!address && address.length <= 25) || 'Max 25 characters',
+              addressCheck
+            ]"
+            label="Address Line"
+            placeholder="123 Apple Ave"
+            solo
+            hide-details
+            class="cform-field"
+            required
+          ></v-text-field>
+        </v-flex>
+        <v-flex xs4>
+          <v-text-field
+            ref="city"
+            v-model="city"
+            :rules="[() => !!city || 'This field is required', addressCheck]"
+            label="City"
+            placeholder="Rawlins"
+            solo
+            hide-details
+            class="cform-field"
+            required
+          ></v-text-field>
         </v-flex>
       </v-layout>
-    </v-container>
-  </section>
+
+      <v-layout row wrap class="cform-row">
+        <v-flex xs3 class="pr-2">
+          <v-text-field
+            ref="state"
+            v-model="state"
+            :rules="[() => !!state || 'This field is required']"
+            label="State"
+            placeholder="WY"
+            solo
+            hide-details
+            class="cform-field"
+            required
+          ></v-text-field>
+        </v-flex>
+        <v-flex xs9>
+          <v-text-field
+            ref="zip"
+            v-model="zip"
+            :rules="[() => !!zip || 'This field is required']"
+            label="ZIP / Postal Code"
+            placeholder="82301"
+            solo
+            hide-details
+            class="cform-field"
+            required
+          ></v-text-field>
+        </v-flex>
+      </v-layout>
+
+      <v-textarea
+        ref="msg"
+        v-model="msg"
+        name="message"
+        label="Message"
+        id="msg"
+        :counter="150"
+        :rules="msgRules"
+        :rows="4"
+        auto-grow
+        solo
+        class="cform-field"
+        required
+      ></v-textarea>
+    </div>
+
+    <!-- Actions -->
+    <div class="cform-actions">
+      <v-slide-x-reverse-transition>
+        <v-tooltip v-if="formHasErrors" left>
+          <template v-slot:activator="{ on }">
+            <v-btn icon class="my-0" @click="resetForm" v-on="on">
+              <v-icon>refresh</v-icon>
+            </v-btn>
+          </template>
+          <span>Refresh form</span>
+        </v-tooltip>
+      </v-slide-x-reverse-transition>
+      <v-spacer></v-spacer>
+      <v-btn
+        color="#ffc200"
+        class="cform-submit"
+        :loading="loading"
+        @click="submit"
+      >
+        <v-icon left color="#34221a">send</v-icon>
+        <span style="color:#34221a;font-weight:700;">Send Message</span>
+      </v-btn>
+    </div>
+
+    <!-- Snackbar -->
+    <v-snackbar
+      v-model="alert"
+      :color="sColor === 'success' ? '#4caf50' : '#f44336'"
+      absolute
+      :bottom="true"
+      :multi-line="true"
+      :timeout="5000"
+    >
+      {{ sText }}
+      <v-btn color="white" flat @click="alert = false">Close</v-btn>
+    </v-snackbar>
+  </div>
 </template>
 
 <script>
@@ -251,3 +286,76 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.cform {
+  display: flex;
+  flex-direction: column;
+}
+
+.cform-title {
+  font-family: 'Baloo Bhai', cursive;
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-align: center;
+  padding: 20px 24px 18px;
+  letter-spacing: 0.5px;
+  border-radius: 20px 20px 0 0;
+}
+
+.cform-body {
+  padding: 24px 28px 8px;
+}
+
+.cform-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: nowrap;
+  margin-bottom: 14px;
+}
+
+.cform-row .v-flex {
+  min-width: 0;
+  padding: 0;
+}
+
+.cform-field {
+  margin-bottom: 14px;
+}
+
+.cform-row .cform-field {
+  margin-bottom: 0;
+}
+
+/* Solo input overrides — more padding, rounder corners */
+.cform-field .v-input__slot {
+  padding: 0 20px !important;
+  min-height: 56px !important;
+  border-radius: 10px !important;
+}
+
+.cform-field .v-label {
+  padding-left: 4px;
+}
+
+.cform-actions {
+  display: flex;
+  align-items: center;
+  padding: 12px 28px 24px;
+}
+
+.cform-submit {
+  font-family: 'Baloo Bhai', cursive !important;
+  font-size: 1rem !important;
+  text-transform: none !important;
+  border-radius: 24px !important;
+  padding: 0 28px !important;
+  height: 46px !important;
+  letter-spacing: 0.3px;
+  box-shadow: 0 4px 16px rgba(255,194,0,0.35) !important;
+}
+
+.cform-submit:hover {
+  box-shadow: 0 6px 24px rgba(255,194,0,0.5) !important;
+}
+</style>
