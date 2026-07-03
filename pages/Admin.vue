@@ -170,7 +170,7 @@ export default {
   name: 'ParticleAdmin',
   data() {
     return {
-      isLoggedIn: false,
+      isLoggedIn: true, // TEMP: Set to true for testing without Firebase
       loginEmail: '',
       loginPassword: '',
       loginError: '',
