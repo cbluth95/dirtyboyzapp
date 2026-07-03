@@ -96,14 +96,14 @@
             <!-- Form MSG -->
             <v-snackbar
               v-model="alert"
-              color="#34221a"
+              :color="sColor === 'success' ? '#4caf50' : '#f44336'"
               absolute
               :bottom="true"
               :multi-line="true"
-              :timeout="3000"
+              :timeout="5000"
             >
               {{ sText }}
-              <v-btn color="red" light @click="alert = false">Close</v-btn>
+              <v-btn color="white" flat @click="alert = false">Close</v-btn>
             </v-snackbar>
             <!-- End Form MSG -->
             <v-card-actions>
@@ -135,6 +135,7 @@ export default {
     loading: false,
     alert: false,
     sText: 'Your message has been sent.',
+    sColor: 'success',
     name: '',
     mail: '',
     phone: '',
@@ -194,10 +195,14 @@ export default {
         this.$refs[f].validate(true)
       })
 
-      if (this.formHasErrors) console.log('Debug: form has ERRORS')
-      else {
+      if (this.formHasErrors) {
+        console.log('Debug: form has ERRORS')
+        this.sText = 'Please fill out all required fields'
+        this.sColor = 'error'
+        this.alert = true
+      } else {
         this.loading = true
-        let email = {
+        const email = {
           name: this.name,
           mail: this.mail,
           phone: this.phone,
@@ -207,12 +212,38 @@ export default {
           zip: this.zip,
           msg: this.msg
         }
-        // 104.248.186.212
+        
+        // Use relative path for API call (works in dev and prod)
         this.$axios
-          .post('https://dirtyboyzsanitation.com/api/email/send', email)
+          .post('/api/email/send', email)
           .then(res => {
+            this.sText = res.data.message || 'Your message has been sent successfully!'
+            this.sColor = 'success'
             this.alert = true
             this.resetForm()
+            this.loading = false
+          })
+          .catch(err => {
+            console.error('Email send error:', err)
+            
+            // Handle different error scenarios
+            if (err.response) {
+              // Server responded with error
+              this.sText = err.response.data.error || 'Failed to send message. Please try again.'
+              
+              if (err.response.status === 503) {
+                this.sText = 'Email service is temporarily unavailable. Please try again later.'
+              }
+            } else if (err.request) {
+              // Request made but no response
+              this.sText = 'Unable to connect to server. Please check your connection.'
+            } else {
+              // Something else happened
+              this.sText = 'An error occurred. Please try again.'
+            }
+            
+            this.sColor = 'error'
+            this.alert = true
             this.loading = false
           })
       }
