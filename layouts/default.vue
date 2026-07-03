@@ -1,10 +1,11 @@
 <template>
   <v-app dark style="background-color: white;">
+    <!-- Particle Effect Layer -->
+    <shared-particle-effect />
+    
     <layout-main-nav/>
-    <v-content v-show="loaded" class="animated fadeIn">
-      <v-container fluid>
-        <nuxt/>
-      </v-container>
+    <v-content v-show="loaded" class="animated fadeIn" style="padding-top: 0;">
+      <nuxt/>
     </v-content>
 
     <v-footer height="auto">
