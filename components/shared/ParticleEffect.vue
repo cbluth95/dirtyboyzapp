@@ -9,6 +9,9 @@
 </template>
 
 <script>
+import { db } from '@/plugins/firebase'
+import { doc, onSnapshot } from 'firebase/firestore'
+
 export default {
   name: 'ParticleEffect',
   props: {
@@ -21,7 +24,8 @@ export default {
       effectType: 'none',
       particles: [],
       animationId: null,
-      fireworkTimer: 0
+      fireworkTimer: 0,
+      unsubscribe: null
     }
   },
   watch: {
@@ -44,6 +48,7 @@ export default {
   },
   beforeDestroy() {
     this.stop()
+    if (this.unsubscribe) this.unsubscribe()
     if (process.client) {
       window.removeEventListener('particleSettingsChanged', this.onSettingsChange)
       window.removeEventListener('resize', this.onResize)
@@ -51,17 +56,39 @@ export default {
   },
   methods: {
     loadSettings() {
+      // Realtime sitewide settings from Firestore (all devices)
+      if (db) {
+        this.unsubscribe = onSnapshot(
+          doc(db, 'config', 'particles'),
+          snap => {
+            if (snap.exists()) {
+              const s = snap.data()
+              this.applySettings(s)
+              // keep localStorage in sync as offline fallback
+              try {
+                localStorage.setItem('particleSettings', JSON.stringify({ enabled: s.enabled, effectType: s.effectType }))
+              } catch (e) {}
+            }
+          },
+          () => this.loadLocalSettings() // Firestore error → fallback
+        )
+      } else {
+        this.loadLocalSettings()
+      }
+    },
+    loadLocalSettings() {
       try {
         const s = JSON.parse(localStorage.getItem('particleSettings') || '{}')
-        this.particlesEnabled = s.enabled || false
-        this.effectType = s.effectType || 'none'
-        if (this.particlesEnabled && this.effectType !== 'none') this.$nextTick(() => this.start())
+        this.applySettings(s)
       } catch (e) {}
     },
-    onSettingsChange(e) {
-      const s = e.detail
+    applySettings(s) {
       this.particlesEnabled = s.enabled || false
       this.effectType = s.effectType || 'none'
+      if (this.particlesEnabled && this.effectType !== 'none') this.$nextTick(() => this.start())
+    },
+    onSettingsChange(e) {
+      this.applySettings(e.detail || {})
     },
     onResize() {
       const c = this.$refs.canvas

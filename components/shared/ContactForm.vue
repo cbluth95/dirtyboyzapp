@@ -10,12 +10,10 @@
       <v-text-field
         ref="name"
         v-model="name"
-        :rules="[() => !!name || 'This field is required']"
-        :error-messages="errorMessages"
+        :rules="nameRules"
         label="Full Name"
         placeholder="John Doe"
         solo
-        hide-details
         class="cform-field"
         required
       ></v-text-field>
@@ -23,12 +21,11 @@
       <v-text-field
         ref="mail"
         v-model="mail"
-        :rules="[() => !!mail || 'This field is required']"
-        :error-messages="errorMessages"
+        :rules="mailRules"
         label="Email"
         placeholder="JohnDoe@email.com"
+        type="email"
         solo
-        hide-details
         class="cform-field"
         required
       ></v-text-field>
@@ -36,12 +33,12 @@
       <v-text-field
         ref="phone"
         v-model="phone"
-        :rules="[() => !!phone || 'This field is required']"
-        :error-messages="errorMessages"
+        :rules="phoneRules"
         label="Phone"
         placeholder="(111) 222-3333"
+        type="tel"
+        mask="phone"
         solo
-        hide-details
         class="cform-field"
         required
       ></v-text-field>
@@ -51,15 +48,10 @@
           <v-text-field
             ref="address"
             v-model="address"
-            :rules="[
-              () => !!address || 'This field is required',
-              () => (!!address && address.length <= 25) || 'Max 25 characters',
-              addressCheck
-            ]"
+            :rules="addressRules"
             label="Address Line"
             placeholder="123 Apple Ave"
             solo
-            hide-details
             class="cform-field"
             required
           ></v-text-field>
@@ -68,11 +60,10 @@
           <v-text-field
             ref="city"
             v-model="city"
-            :rules="[() => !!city || 'This field is required', addressCheck]"
+            :rules="cityRules"
             label="City"
             placeholder="Rawlins"
             solo
-            hide-details
             class="cform-field"
             required
           ></v-text-field>
@@ -84,11 +75,10 @@
           <v-text-field
             ref="state"
             v-model="state"
-            :rules="[() => !!state || 'This field is required']"
+            :rules="stateRules"
             label="State"
             placeholder="WY"
             solo
-            hide-details
             class="cform-field"
             required
           ></v-text-field>
@@ -97,11 +87,11 @@
           <v-text-field
             ref="zip"
             v-model="zip"
-            :rules="[() => !!zip || 'This field is required']"
+            :rules="zipRules"
             label="ZIP / Postal Code"
             placeholder="82301"
+            mask="#####"
             solo
-            hide-details
             class="cform-field"
             required
           ></v-text-field>
@@ -166,7 +156,6 @@
 <script>
 export default {
   data: () => ({
-    errorMessages: '',
     loading: false,
     alert: false,
     sText: 'Your message has been sent.',
@@ -180,6 +169,45 @@ export default {
     zip: '',
     msg: '',
     formHasErrors: false,
+    nameRules: [
+      v => !!v || 'Full name is required',
+      v => (v && v.trim().length >= 2) || 'Name must be at least 2 characters',
+      v =>
+        /^[a-zA-Z\s.'-]+$/.test(v || '') ||
+        'Name can only contain letters, spaces, and \' . -'
+    ],
+    mailRules: [
+      v => !!v || 'Email is required',
+      v =>
+        /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v || '') ||
+        'Enter a valid email address'
+    ],
+    phoneRules: [
+      v => !!v || 'Phone number is required',
+      v =>
+        /^\d{10}$/.test((v || '').replace(/\D/g, '')) ||
+        'Enter a valid 10-digit phone number'
+    ],
+    addressRules: [
+      v => !!v || 'Address is required',
+      v => (v && v.length <= 25) || 'Max 25 characters',
+      v =>
+        /^[a-zA-Z0-9\s.,#'-]+$/.test(v || '') || 'Enter a valid street address'
+    ],
+    cityRules: [
+      v => !!v || 'City is required',
+      v => /^[a-zA-Z\s.'-]+$/.test(v || '') || 'Enter a valid city name'
+    ],
+    stateRules: [
+      v => !!v || 'State is required',
+      v =>
+        /^[a-zA-Z]{2}$/.test((v || '').trim()) ||
+        'Use 2-letter abbreviation (WY)'
+    ],
+    zipRules: [
+      v => !!v || 'ZIP code is required',
+      v => /^\d{5}$/.test(v || '') || 'Enter a valid 5-digit ZIP code'
+    ],
     msgRules: [
       v => !!v || 'A message is required',
       v => (v && v.length <= 150) || 'Message must be less than 150 characters'
@@ -203,18 +231,12 @@ export default {
 
   watch: {
     name() {
-      this.errorMessages = ''
+      this.formHasErrors = false
     }
   },
 
   methods: {
-    addressCheck() {
-      this.errorMessages = this.address && !this.name ? "Hey! I'm required" : ''
-
-      return true
-    },
     resetForm() {
-      this.errorMessages = []
       this.formHasErrors = false
 
       Object.keys(this.form).forEach(f => {
@@ -224,15 +246,13 @@ export default {
     submit() {
       this.formHasErrors = false
 
+      // Run each field's validation rules; validate(true) returns false on failure
       Object.keys(this.form).forEach(f => {
-        if (!this.form[f]) this.formHasErrors = true
-
-        this.$refs[f].validate(true)
+        if (!this.$refs[f].validate(true)) this.formHasErrors = true
       })
 
       if (this.formHasErrors) {
-        console.log('Debug: form has ERRORS')
-        this.sText = 'Please fill out all required fields'
+        this.sText = 'Please correct the highlighted fields'
         this.sColor = 'error'
         this.alert = true
       } else {
@@ -320,7 +340,7 @@ export default {
 }
 
 .cform-field {
-  margin-bottom: 14px;
+  margin-bottom: 2px;
 }
 
 .cform-row .cform-field {

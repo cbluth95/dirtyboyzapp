@@ -58,6 +58,8 @@ typings/
 
 # dotenv environment variables file
 .env
+.env-production
+.env.*
 
 # Firebase service account keys — NEVER commit these
 *-adminsdk-*.json

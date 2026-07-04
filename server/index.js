@@ -17,7 +17,9 @@ async function start() {
   // Init Nuxt.js
   const nuxt = new Nuxt(config)
 
-  const { host, port } = nuxt.options.server
+  // Prefer env vars (cPanel/Passenger provides PORT), fall back to nuxt config
+  const host = process.env.HOST || nuxt.options.server.host
+  const port = process.env.PORT || nuxt.options.server.port
 
   // Build only in dev mode
   if (config.dev) {

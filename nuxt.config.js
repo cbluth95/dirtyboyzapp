@@ -72,7 +72,8 @@ module.exports = {
    ** Axios module configuration
    */
   axios: {
-    // See https://github.com/nuxt-community/axios-module#options
+    // Use same-origin relative URLs in the browser (don't bake dev host into build)
+    browserBaseURL: '/'
   },
 
   /*
